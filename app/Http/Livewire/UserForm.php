@@ -82,11 +82,13 @@ class UserForm extends Component
 
      public function store() {
         $this->validate();
-        $image = $this->image;
-        if($image->isValid()){
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-          };
         $user = new User();
+        $image = $this->image;
+        if($image){
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $this->image->storeAs('public/photos/users/', $filename);
+            $user->image=$filename;
+          };
         $user->name = $this->name;
         $user->role()->associate($this->role);
         $user->phone = $this->phone;
@@ -94,8 +96,6 @@ class UserForm extends Component
         $user->password = bcrypt($this->password);
         $password_unmd5 = $this->password;
         $user->email = $this->email;
-        $this->image->storeAs('public/photos/users/', $filename);
-        $user->image=$filename;
         $user->save();
         $this->alert('success', 'ثبت نام با موفقیت انجام شد .', [
             'position' => 'center'

@@ -14,6 +14,8 @@
                     <div class="flex flex-col items-center m-auto w-[50%]">
                         @if ($image && empty($imageupdated))
                         <img  class="object-cover w-full h-full rounded-full"  src="{{ asset("/storage/photos/users/$image") }}">
+                        @elseif (empty($image) && empty($imageupdated))
+                        <img class="object-cover w-full h-full rounded-full" src="{{ asset('/storage/photos/users/profile.jpg') }}">
                         @else
                         <img class="object-cover w-full h-full rounded-full" src="{{ $imageupdated->temporaryUrl() }}">
                         @endif
