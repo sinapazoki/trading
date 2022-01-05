@@ -1,0 +1,46 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+[x-cloak] {
+    display: none!important;
+}
+select {
+    background-position: left  0.5rem center;
+}
+@media (min-width: 640px) {
+    table {
+      display: inline-table !important;
+    }
+
+    thead tr:not(:first-child) {
+      display: none;
+    }
+  }
+
+  td:not(:last-child) {
+    border-bottom: 0;
+  }
+
+  th:not(:last-child) {
+    border-bottom: 2px solid rgba(0, 0, 0, .1);
+  }
+.menu__title {
+    margin-right: 10px;
+}
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/dist/fonts/iranyekanwebmediumfanum.eot');
+    src: url('/dist/fonts/iranyekanwebmediumfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('/dist/fonts/iranyekanwebmediumfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('/dist/fonts/iranyekanwebmediumfanum.ttf') format('truetype');
+}
+html {
+    font-family: 'iranyekan';
+    line-height: 1.5
+}
+.truncate,
+.whitespace-nowrap {
+    white-space: nowrap
+}
