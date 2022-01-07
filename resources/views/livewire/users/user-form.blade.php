@@ -7,9 +7,7 @@
 
     @endif
 
-
-
-      <div class="flex items-center justify-center">
+       <div class="flex items-center justify-center">
         <div class="container">
             <table class="w-full bg-white flex flex-row text-right flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
                 <thead class="text-white text-center">
@@ -30,12 +28,12 @@
                             {{$user->id}}
                           </td>
                         <td class="px-4 py-3">
-                          <div class="flex items-center text-sm justify-center">
+                          <div class="flex items-center text-sm">
                             <div class="relative hidden w-8 h-8 ml-3 rounded-full md:block">
                                 @if ($user->image)
-                                <img class="object-cover w-full h-full rounded-full" src="{{asset('/storage/photos/users/'.$user->image)}}" alt="" loading="lazy">
+                                <img class="object-cover w-full h-full rounded-full" src="{{asset($user->image)}}" alt="" loading="lazy">
                                 @else
-                                <img class="object-cover w-full h-full rounded-full" src="{{asset('/storage/photos/users/profile.jpg')}}" alt="" loading="lazy">
+                                <img class="object-cover w-full h-full rounded-full" src="{{asset('/storage/site/thumbs/profile.jpeg')}}" alt="" loading="lazy">
                                 @endif
                               <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                             </div>
@@ -78,6 +76,7 @@
 
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
       </div>
 </div>

@@ -10,7 +10,7 @@
                   <p>اطلاعات کاربر مورد نظر را وارد نمایید:</p>
                   <input type="hidden" wire:model="user_id">
                     <input type="hidden" wire:model="imageupdated" name="imageupdated">
-                  <div class="md:col-span-full">
+                  <div class="md:col-span-full mt-5">
                     <div class="flex flex-col items-center m-auto w-[50%]">
                         @if ($image && empty($imageupdated))
                         <img  class="object-cover w-full h-full rounded-full"  src="{{ asset("/storage/photos/users/$image") }}">

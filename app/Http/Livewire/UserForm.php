@@ -15,9 +15,7 @@ class UserForm extends Component
     use WithFileUploads;
     public $name , $phone , $password , $email , $image, $role , $user_id, $imageupdated , $description , $sms;
     public $updateMode = false;
-    public $listeners = [
-        'confirmed'
-    ];
+
 
     protected $rules = [
         'name' => 'required|max:20',
@@ -25,7 +23,7 @@ class UserForm extends Component
         'email' => 'required|email|unique:users',
         'password' => 'required|min:8',
         'role' => 'required',
-        'image' => 'nullable|mimes:png,jpg|max:1048',
+
     ];
     protected $messages = [
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
@@ -34,7 +32,6 @@ class UserForm extends Component
         'password.required' => 'وارد کردن این بخش الزامی میباشد' ,
         'password.min' => 'حداقل تعداد کاراکتر 8 عدد میباشد' ,
         'role.required' => 'وارد کردن این بخش الزامی میباشد' ,
-        'image.mimes' => 'فرمت مجاز jpg , png میباشد' ,
     ];
 
 
@@ -83,12 +80,7 @@ class UserForm extends Component
      public function store() {
         $this->validate();
         $user = new User();
-        $image = $this->image;
-        if($image){
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $this->image->storeAs('public/photos/users/', $filename);
-            $user->image=$filename;
-          };
+        $user->image = $this->image;
         $user->name = $this->name;
         $user->role()->associate($this->role);
         $user->phone = $this->phone;
@@ -139,8 +131,8 @@ class UserForm extends Component
         $this->password = '';
         $this->role = '';
         $this->email = '';
-        $this->image = '';
         $this->sms = '';
+        $this->image = '';
         $this->description = '';
 
 

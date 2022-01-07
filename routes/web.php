@@ -17,10 +17,11 @@ Route::prefix('admin')->group(function () {
 
     Route::view('/', 'admin.home')->name('admin.home');
     Route::get('user', [UserController::class, 'index'])->name('user.index');
-
+    Route::view('filemanager', 'admin.filemanager')->name('filemanager');
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
-
-
 
 
 

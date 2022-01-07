@@ -10,6 +10,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://unpkg.com/feather-icons"></script>
+        @section('header-scripts')
+
+        @show
 
         <title>  @yield('title')</title>
 
@@ -85,7 +88,15 @@
                     <div class="menu__title"> تنظیمات سایت</div>
                     </a>
                   </li>
-
+                  <li class="relative px-6 py-3">
+                    <a
+                      class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                      href="{{route('filemanager')}}"
+                    >
+                    <div class="menu__icon"> <i data-feather="image"></i> </div>
+                    <div class="menu__title"> مدیریت فایل ها</div>
+                    </a>
+                  </li>
                  </ul>
                 <div class="px-6 my-6">
                   <a
@@ -660,11 +671,11 @@
           <script>
             feather.replace()
           </script>
-        <!-- END: JS Assets-->
+        @section('footer-scripts')
+
+        @show
 
         @livewireScripts
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
         <x-livewire-alert::scripts />
         </body>
 
