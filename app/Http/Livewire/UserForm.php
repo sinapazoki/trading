@@ -172,9 +172,6 @@ class UserForm extends Component
                 if($this->imageupdated)
                 {
                     $image = $this->imageupdated;
-                    $filename = time() . '.' . $image->getClientOriginalExtension();
-                    $image = $filename;
-                    $this->imageupdated->storeAs('public/photos/users/', $image);
                 }
                 else
                 {

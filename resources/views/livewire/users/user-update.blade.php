@@ -9,17 +9,22 @@
                   <p class="font-medium text-lg">اطلاعات فردی</p>
                   <p>اطلاعات کاربر مورد نظر را وارد نمایید:</p>
                   <input type="hidden" wire:model="user_id">
-                    <input type="hidden" wire:model="imageupdated" name="imageupdated">
+
+
+
                   <div class="md:col-span-full mt-5">
-                    <div class="flex flex-col items-center m-auto w-[50%]">
-                        @if ($image && empty($imageupdated))
-                        <img  class="object-cover w-full h-full rounded-full"  src="{{ asset("/storage/photos/users/$image") }}">
-                        @elseif (empty($image) && empty($imageupdated))
-                        <img class="object-cover w-full h-full rounded-full" src="{{ asset('/storage/photos/users/profile.jpg') }}">
-                        @else
-                        <img class="object-cover w-full h-full rounded-full" src="{{ $imageupdated->temporaryUrl() }}">
-                        @endif
-                       </div>
+                 <div id="holder" class="user-profile flex flex-col items-center m-auto w-[50%]">
+                    @if ($image && empty($imageupdated))
+                    <img src="{{ asset($image) }}">
+                    @elseif (empty($image) && empty($imageupdated))
+                    <img src="{{asset('/storage/site/thumbs/profile.jpeg')}}">
+                    @else
+                    <img src="{{asset($imageupdated)}}">
+                    @endif
+                 </div>
+
+
+                   <a id="lfm" data-input="thumbnail" data-preview="holder">
                     <label class="w-64 m-auto flex justify-center items-center py-1.5 rounded-md tracking-wide uppercase ursor-pointer text-gray ease-linear transition-all duration-150">
                         <svg class="animate-bounce h-10 w-10 text-[#00b9c0]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -28,13 +33,11 @@
                             <span class="mt-2 text-base leading-normal">آپلود نمایه کاربر</span>
                             <span class="leading-normal text-[10px]">PNG, JPG, GIF up to 10MB</span>
                           </div>
-                    <input wire:model="imageupdated" class="form-control hidden" type="file" name="imageupdated" />
+                          <input wire:model="imageupdated" id="thumbnail" class="form-control hidden" type="text" name="imageupdated"  onchange="this.dispatchEvent(new InputEvent('input'))" />
                     </label>
-
-                   @error('imageupdated')
-                   <span class="text-center"> {{$message}}</span>
-                     @enderror
+                   </a>
                 </div>
+
                 </div>
 
                 <div class="lg:col-span-2">

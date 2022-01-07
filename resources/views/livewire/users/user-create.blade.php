@@ -13,9 +13,9 @@
                   <div class="md:col-span-full mt-5">
                  <div id="holder" class="user-profile flex flex-col items-center m-auto w-[50%]">
                     @if (empty($image))
-                    <img class="object-cover w-full h-full rounded-full" src="{{ asset('/storage/site/profile.jpeg') }}">
+                    <img src="{{ asset('/storage/site/profile.jpeg') }}">
                     @else
-                    <img class="object-cover w-full h-full rounded-full" src="{{ asset($image) }}">
+                    <img src="{{ asset($image) }}">
                     @endif
                  </div>
 
