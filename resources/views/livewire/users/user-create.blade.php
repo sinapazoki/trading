@@ -39,7 +39,7 @@
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
                     <div class="md:col-span-2">
                       <label for="name">نام و نام خانوادگی</label>
-                      <input wire:model.defer="name" type="text" name="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                      <input wire:model="name" type="text" name="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                       @error('name')
                       {{$message}}
                       @enderror
@@ -47,7 +47,7 @@
 
                     <div class="md:col-span-2">
                         <label for="phone">شماره تماس</label>
-                        <input wire:model.defer="phone" type="text" name="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="09123456789" />
+                        <input wire:model="phone" type="text" name="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="09123456789" />
                         @error('phone')
                         {{$message}}
                           @enderror
@@ -63,7 +63,7 @@
 
                     <div class="md:col-span-4">
                       <label for="description">درباره کاربر</label>
-                      <textarea wire:model.defer="description" name="description" class="h-30 border mt-1 rounded px-4 w-full bg-gray-50">اطلاعات فردی کاربر</textarea>
+                      <textarea wire:model="description" name="description" class="h-30 border mt-1 rounded px-4 w-full bg-gray-50">اطلاعات فردی کاربر</textarea>
                       @error('description')
                       {{$message}}
                        @enderror
@@ -71,7 +71,7 @@
 
                     <div class="md:col-span-2">
                       <label for="password">رمز عبور (حداقل 8 کاراکتر)</label>
-                      <input wire:model.defer="password" type="password" name="password" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                      <input wire:model="password" type="password" name="password" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                       @error('password')
                       {{$message}}
                         @enderror
@@ -79,7 +79,7 @@
 
                     <div class="md:col-span-2">
                         <label for="role">نقش کاربر</label>
-                        <select wire:model.defer="role" name="role" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                        <select wire:model="role" name="role" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                             <option value="" selected hidden>انتخاب کنید</option>
                             @foreach ($roles as $role )
                             <option value="{{$role->id}}">{{$role->name}}</option>
@@ -93,7 +93,7 @@
 
                     <div class="md:col-span-5">
                       <div class="inline-flex items-center">
-                        <input wire:model.defer="sms" type="checkbox" name="sms" class="form-checkbox" />
+                        <input wire:model="sms" type="checkbox" name="sms" class="form-checkbox" />
                         <label for="sms" class="mr-2">پیامک اطلاعات برای کاربر ارسال شود</label>
                       </div>
                     </div>

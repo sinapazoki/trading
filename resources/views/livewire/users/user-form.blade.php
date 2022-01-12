@@ -23,7 +23,7 @@
                 </thead>
                 <tbody class="flex-1 sm:flex-none">
                     @foreach ( $users as $user)
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0 text-gray-700 text-center">
+                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 transition hover:bg-gray-100 sm:mb-0 text-gray-700 text-center">
                         <td class="px-4 py-3 text-sm">
                             {{$user->id}}
                           </td>
