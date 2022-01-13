@@ -46,7 +46,7 @@
                           </div>
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            {{$date = jdate($user->created_at)->format('%d %B، %Y')}}
+                            {{now()}}
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{$user->email}}
