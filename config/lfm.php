@@ -54,6 +54,8 @@ return [
                 'image/jpeg',
                 'image/pjpeg',
                 'image/png',
+                'video/mp4',
+                'image/mpeg',
                 'image/gif',
                 'application/pdf',
                 'text/plain',

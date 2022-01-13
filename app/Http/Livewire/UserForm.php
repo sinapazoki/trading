@@ -187,6 +187,7 @@ class UserForm extends Component
                         'password' => bcrypt($this->password),
                         'email' => $this->email,
                         'image' => $image,
+                        'description' => $this->description,
                     ]);
                 }
                 else
@@ -196,6 +197,7 @@ class UserForm extends Component
                         'phone' => $this->phone,
                         'email' => $this->email,
                         'image' => $image,
+                        'description' => $this->description,
                     ]);
                 }
 

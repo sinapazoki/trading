@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +22,7 @@
 
         <body  x-data="dropdown" class="main font-iranyekan">
             @livewireScripts
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
             <div
             class="flex h-screen bg-gray-50 dark:bg-gray-900"
@@ -55,25 +55,25 @@
                   <li class="relative px-6 py-3">
                     <a
                       class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                      href="forms.html"
+                      href="{{route('admin.page.index')}}"
                     >
                     <div class="menu__icon"> <i data-feather="book"></i> </div>
-                    <div class="menu__title"> دوره های آموزشی </div>
+                    <div class="menu__title"> دوره های تریدر </div>
                     </a>
                   </li>
                   <li class="relative px-6 py-3">
                     <a
                       class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                      href="cards.html"
+                      href="{{route('admin.tag.index')}}"
                     >
                     <div class="menu__icon"> <i data-feather="file-text"></i> </div>
-                    <div class="menu__title"> مقالات آموزشی </div>
+                    <div class="menu__title">مدیریت برچسب ها</div>
                     </a>
                   </li>
                   <li class="relative px-6 py-3">
                     <a
                       class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                      href="{{route('user.index')}}"
+                      href="{{route('admin.user.index')}}"
                     >
                     <div class="menu__icon"> <i data-feather="users"></i> </div>
                     <div class="menu__title"> مدیریت کاربران</div>
@@ -100,7 +100,7 @@
                  </ul>
                 <div class="px-6 my-6">
                   <a
-                  href="{{route('user.index')}}" class="inline-flex items-center justify-around w-full text-sm font-semibold transition-colors duration-150 p-2 rounded-lg bg-gradient-to-tr from-[#00c7ba] to-[#00abc7] text-white shadow-md"
+                  href="{{route('admin.user.index')}}" class="inline-flex items-center justify-around w-full text-sm font-semibold transition-colors duration-150 p-2 rounded-lg bg-gradient-to-tr from-[#00c7ba] to-[#00abc7] text-white shadow-md"
                   >
                     افزودن کاربر جدید
                     <span class="ml-2" aria-hidden="true"><i data-feather="user-plus"></i></span>
@@ -477,91 +477,30 @@
                         </template>
                       </button>
                     </li>
-                    <!-- Notifications menu -->
-                    <li class="relative">
-                      <button
-                        class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
 
-
-                        aria-label="Notifications"
-                        aria-haspopup="true"
-                      >
-                        <svg
-                          class="w-5 h-5"
-                          aria-hidden="true"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
-                          ></path>
-                        </svg>
-                        <!-- Notification badge -->
-                        <span
-                          aria-hidden="true"
-                          class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
-                        ></span>
-                      </button>
-                      <template x-if="isNotificationsMenuOpen">
-                        <ul
-                          x-transition:leave="transition ease-in duration-150"
-                          x-transition:leave-start="opacity-100"
-                          x-transition:leave-end="opacity-0"
-
-                          class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
-                        >
-                          <li class="flex">
-                            <a
-                              class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                              href="#"
-                            >
-                              <span>Messages</span>
-                              <span
-                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600"
-                              >
-                                13
-                              </span>
-                            </a>
-                          </li>
-                          <li class="flex">
-                            <a
-                              class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                              href="#"
-                            >
-                              <span>Sales</span>
-                              <span
-                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600"
-                              >
-                                2
-                              </span>
-                            </a>
-                          </li>
-                          <li class="flex">
-                            <a
-                              class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                              href="#"
-                            >
-                              <span>Alerts</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </template>
-                    </li>
                     <!-- Profile menu -->
                     <li class="relative">
-                      <button
-                        class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                      <div
+                        class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none flex items-center"
 
                         aria-label="Account"
                         aria-haspopup="true"
                       >
                         <img
-                          class="object-cover w-8 h-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                          class="object-cover w-8 h-8 rounded-full shadow-md ml-2"
+                          src="@if(auth()->user()->image) {{asset(auth()->user()->image)}} @else {{asset('/storage/site/thumbs/profile.jpeg')}} @endif"
                           alt=""
                           aria-hidden="true"
                         />
-                      </button>
+                        <div>
+                            <p class="text-gray-500 text-sm -mb-[2px]">سلام؛ {{auth()->user()->name}}</p>
+                            <a class="flex items-center text-[#25bdb4] text-[10px]" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="text-[#25bdb4]"> <i data-feather="log-out" class="w-3 h-3 mr-2"></i>خروج از حساب</a>
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                           </form>
+                        </div>
+                    </div>
                       <template x-if="isProfileMenuOpen">
                         <ul
                           x-transition:leave="transition ease-in duration-150"
