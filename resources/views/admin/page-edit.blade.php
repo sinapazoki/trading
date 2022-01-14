@@ -83,6 +83,21 @@
                                                      @error('user_id')
                                                      {{$message}}
                                                     @enderror
+
+
+
+                                                    <label for="user_id">انتخاب تگ</label>
+                                                <select multiple name="tag[]" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                                    <option value="" selected hidden>انتخاب کنید</option>
+                                                    @foreach ($tags as $key=>$value )
+                                                    <option @if(in_array($key , $page_tags)) selected @endif
+                                                     value="{{$key}}">{{$value}}</option>
+                                                      @endforeach
+
+                                                  </select>
+                                                     @error('tag')
+                                                     {{$message}}
+                                                    @enderror
                                               </div>
                                           </div>
 

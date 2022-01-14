@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Models\Page;
 use App\Models\Role;
+use App\Models\Tag;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\User;
@@ -13,7 +14,7 @@ class PageForm extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id;
+    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag ;
     public $updateMode = false;
     public $isDisabled = 'disabled';
     public $isUpdating = 'بروزرسانی ...';
@@ -25,6 +26,7 @@ class PageForm extends Component
         $this->description = '';
         $this->user_id = '';
         $this->video = '';
+        $this->tag = '';
     }
 
     protected $rules = [
@@ -33,8 +35,7 @@ class PageForm extends Component
         'video' => 'required',
         'image' => 'required',
         'description' => 'required',
-
-
+        'tag' => 'nullable',
     ];
     protected $messages = [
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
@@ -57,7 +58,9 @@ class PageForm extends Component
 
     public function delete($id)
     {
-       Page::find($id)->delete();
+       $page =  Page::find($id);
+       $page ->tags()->detach();
+       $page ->delete();
        $this->resetInputFields();
        $this->alert('warning', 'دوره مورد نظر حذف شد', [
         'position' => 'center'
@@ -115,6 +118,10 @@ class PageForm extends Component
     $pages->video = $this->video;
     $pages->slug = $this->slug;
     $pages->save();
+    if($this->tag)
+    {
+         $pages->tags()->attach($this->tag);
+    }
     $this->alert('success', 'دوره جدید با موفقیت اضافه شد.', [
         'position' => 'center'
     ]);
@@ -123,7 +130,7 @@ class PageForm extends Component
 
     }
 
-    public function render()
+      public function render()
     {
         if (!empty($this->description) && !empty($this->name) && !empty($this->user_id) && !empty($this->image) && !empty($this->video)) {
             $this->isDisabled = '';
@@ -132,6 +139,7 @@ class PageForm extends Component
         return view('livewire.pages.page-form' , [
             'pages' => Page::orderBy('id', 'ASC')->paginate(4),
             'roles' => User::where('role_id' , '2')->get(),
+            'tags' => Tag::all(),
         ]);
        }
 

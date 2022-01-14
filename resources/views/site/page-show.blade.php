@@ -1,7 +1,14 @@
 @extends('site.layouts.master')
 @section('title' , 'صفحه اصلی')
 @section('header-scripts')
-<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+<link
+  href="https://unpkg.com/video.js@7/dist/video-js.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"
+  rel="stylesheet"
+/>
 @endsection
 
 
@@ -79,6 +86,7 @@
                             <span class="text-[12px] text-[#b8b8b8]">مدرس دوره</span>
                             <span class="text-sm text-chambray-700 font-bold">{{$page->user->name}}</span>
                         </div>
+
                     </div>
 
                  </div>
@@ -98,15 +106,15 @@
             <div class="xl:col-span-9 break-words lg:col-span-8 bg-white shadow-sm rounded-lg px-6 py-6">
                 @trade
                 <h3 class="flex items-center text-[#25bdb4] text-2xl pb-4 font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>ویدیو دوره</h3>
-                  <video
+                             <video
                     id="my-video"
-                    class="video-js"
+                    class="video-js vjs-theme-fantasy"
                     controls
                     preload="auto"
-                    width="100%"
-                    height="264"
+                    poster ="https://www.hoseinifinance.com/back-end/media/productfile/None/None_2021-12-20_155829.818102.jpg"
                     data-setup="{}"
-                >
+
+                    >
 
                     <source src="{{$page->video}}" type="video/mp4" />
                 </video>
@@ -124,7 +132,7 @@
                      </ul>
                 </div>
             </div>
-            <div class="xl:col-span-3 break-words lg:col-span-4">
+            <div class="xl:col-span-3 break-words lg:col-span-4 mt-4 md:mt-0">
                 <div class="bg-white px-6 py-6 shadow-sm rounded-lg ">
                     <div class="w-16 h-16 bg-gray-300 group relative rounded-full overflow-hidden border-3 border-solid border-gray-200 m-auto">
                         <img class="w-full h-full object-cover transform transition duration-200 hover:scale-110" src="{{asset($page->user->image)}}">
@@ -133,6 +141,47 @@
                         <span class="text-[12px] text-[#b8b8b8] pt-2">مدرس دوره</span>
                         <span class="text-sm text-chambray-700 font-bold">{{$page->user->name}}</span>
                         <p class="text-[12px] text-[#b8b8b8] text-justify pt-2">{{$page->user->description}}</p>
+                    </div>
+                </div>
+                <div class="bg-white px-6 py-6 shadow-sm rounded-lg mt-4 ">
+                    <h3 class="flex items-center text-[#25bdb4] pt-4 text-xl font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>مطالب مرتبط</h3>
+                    <div class="mt-2">
+                        @foreach ( $related as $post )
+                        @if($post->status == 1)
+                        <div class="group sm:px-4 px-2 py-3  rounded-lg border-b-2 border-gray-80 border-opacity-60">
+                            <div>
+                                <div class="flex items-center">
+                                    <div class="xl:w-13 xl:h-13 sm:w-16 sm:h-16 w-11 h-11 rounded-md ml-2  flex items-center justify-center flex-shrink-0">
+                                        <img class="w-full h-full object-cover rounded-lg" src="{{asset($post->image)}}" alt="{{$post->name}}">
+                                    </div>
+                                    <h6 class="xl:text-lg lg:text-base font-bold text-gray-800">
+                                        <a href="{{asset('pages/'.$post->slug)}}">
+                                            {{$post->name}}
+                                        </a>
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-gray-80 border-opacity-60 mt-3 pt-3">
+                                <div class="flex items-center">
+                                    <div class="flex items-center bg-gray-100 sm:px-2 px-1 h-6 rounded ml-2">
+                                        <span class="ml-1">
+                                            <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.29921 7.10036C1.29921 8.47492 1.37342 9.55017 1.56095 10.394C1.74739 11.2329 2.04007 11.8164 2.45902 12.2353C2.87796 12.6543 3.4615 12.947 4.30041 13.1334C5.14419 13.3209 6.21945 13.3952 7.594 13.3952C8.96856 13.3952 10.0438 13.3209 10.8876 13.1334C11.7265 12.947 12.31 12.6543 12.729 12.2353C13.1479 11.8164 13.4406 11.2329 13.6271 10.394C13.8146 9.55017 13.8888 8.47492 13.8888 7.10036C13.8888 5.72581 13.8146 4.65055 13.6271 3.80677C13.4406 2.96786 13.1479 2.38432 12.729 1.96538C12.31 1.54643 11.7265 1.25375 10.8876 1.06731C10.0438 0.879784 8.96856 0.805572 7.594 0.805572C6.21945 0.805572 5.14419 0.879784 4.30041 1.06731C3.4615 1.25375 2.87796 1.54643 2.45902 1.96538C2.04007 2.38432 1.74739 2.96786 1.56095 3.80677C1.37342 4.65055 1.29921 5.72581 1.29921 7.10036Z" stroke="#607496" stroke-width="0.858919" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M7.59399 3.73825C7.59399 3.73825 7.59399 5.97967 7.59399 6.54002C7.59399 7.10038 7.59399 7.10038 8.15435 7.10038C8.71471 7.10038 10.9561 7.10038 10.9561 7.10038" stroke="#607496" stroke-width="0.858919" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                                        </span>
+                                        <span class="text-gray-500 font-normal text-xs">{{jdate($post->updated_at)->format('%d %B، %Y')}}</span>
+                                    </div>
+                                  </div>
+                                    <div class="flex items-center">
+                                    <a href="{{asset('pages/'.$post->slug)}}" class="flex items center  justify-centerleading-3 text-sm text-[#25bdb4] font-bold">مشاهده مطلب
+                                        <i class="w-4 mr-1 group-hover:animate-bounce" data-feather="arrow-left"></i>
+                                    </a>
+                                   </div>
+                          </div>
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -144,5 +193,6 @@
 
 
 @section('footer-scripts')
+<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
 
 @endsection

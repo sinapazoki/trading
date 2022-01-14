@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Page;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -48,8 +49,19 @@ class PageController extends Controller
     public function show($page)
     {
         $page = Page::where('slug', $page)->firstOrFail();
-
-        return view('site.page-show', ['page' => $page]);
+        $related = Page::whereHas('tags', function ($q) use ($page) {
+            return $q->whereIn('name', $page->tags->pluck('name'));
+        })
+        ->where('id', '!=', $page->id)
+        ->get();
+        if($page->status == 1)
+        {
+            return view('site.page-show', ['page' => $page] , ['related' => $related]);
+        }
+        else
+        {
+            return redirect('/');
+        }
     }
 
     /**
@@ -61,7 +73,10 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         $roles = User::where('role_id','2')->get();
-        return view('admin.page-edit',compact('page' , 'roles'));
+        $tags = Tag::pluck('name' , 'id');
+        $page_tags = DB::table('page_tag')->where('page_id' , $page->id)->pluck('tag_id')->toArray();
+     //dd(  $page_tags);
+        return view('admin.page-edit',compact('page' , 'roles' , 'page_tags' , 'tags'));
 
     }
 
@@ -78,9 +93,11 @@ class PageController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'tag' => 'required',
         ]);
-
         $page->update($request->all());
+       $tag_list = array_filter($request['tag'] ,'strlen');
+        $page->tags()->sync($tag_list);
         return redirect()->route('admin.page.index');
 
     }

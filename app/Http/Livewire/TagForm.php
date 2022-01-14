@@ -33,7 +33,9 @@ class TagForm extends Component
 
     public function delete($id)
     {
-       Tag::find($id)->delete();
+      $tag = Tag::find($id);
+      $tag ->pages()->detach();
+      $tag->delete();
        $this->resetInputFields();
        $this->alert('warning', 'برچسب مورد نظر حذف شد', [
         'position' => 'center'

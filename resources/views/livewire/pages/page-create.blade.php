@@ -88,6 +88,19 @@
                                                      @error('user_id')
                                                      {{$message}}
                                                     @enderror
+
+
+                                                      <label for="user_id">انتخاب تگ</label>
+                                                <select multiple wire:model="tag" name="tag" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                                    <option value="" selected hidden>انتخاب کنید</option>
+                                                    @foreach ($tags as $tag )
+                                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                                    @endforeach
+
+                                                  </select>
+                                                     @error('tag')
+                                                     {{$message}}
+                                                    @enderror
                                               </div>
                                           </div>
 

@@ -44,13 +44,22 @@
                           </div>
                         </td>
                         <td class="px-4 py-3 text-sm">
-                           برپسب ها
+                            @if (count($page->tags)>0)
+                            <ul>
+                                @foreach ( $page->tags as $tag )
+                                <li>{{$tag->name}}</li>
+                               @endforeach
+                            </ul>
+                            @else
+                            بدون برچسب
+                            @endif
+
                         </td>
                         <td class="px-4 py-3 text-sm">
                             <div class="text-right inline-block">
                                 <p class="font-semibold">آخرین ویرایش</p>
                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                    {{$date = jdate($page->updated_at)->format('%d %B، %Y')}}
+                                    {{jdate($page->updated_at)->format('%d %B، %Y')}}
                                 </p>
                               </div>
                         </td>

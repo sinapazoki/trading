@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\PrivateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use App\Http\Controllers\TagController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::view('/', 'admin.home')->name('admin.home');
@@ -29,7 +31,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     });
 });
 Route::get('pages/{page}', [PageController::class, 'show'])->name('page.show');
-
 
 
 

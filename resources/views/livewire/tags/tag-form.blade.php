@@ -42,7 +42,8 @@
                               </div>
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            5
+                            {{count($tag->pages)}}
+
                            </td>
                         <td class="px-4 py-3 text-sm">
                             <div class="flex justify-center items-center">
