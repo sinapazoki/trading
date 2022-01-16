@@ -5,7 +5,8 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 @endsection
 
 
@@ -33,4 +34,5 @@ var route_prefix = "{{route('unisharp.lfm.show')}}";
         }))
     })
 </script>
+
 @endsection

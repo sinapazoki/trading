@@ -145,6 +145,7 @@ html {
 
 .vjs-poster {
     border-radius: 15px;
+    z-index: 2;
 }
 
 .vjs-poster::before {
@@ -166,6 +167,7 @@ html {
     color: #ffffff!important;
     background-color: #25bdb4!important;
     border-radius: 50%!important;
+    z-index: 3;
 }
 
 @keyframes shadow-pulse {
@@ -214,4 +216,83 @@ button.vjs-big-play-button::before {
     -webkit-animation: shadow-pulse-small 0.90s cubic-bezier(.76, .6, .68, .16) infinite;
     animation: shadow-pulse-small 0.90s cubic-bezier(.76, .6, .68, .16) infinite;
     content: "";
+}
+.video-container {
+    position: relative;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+video::-webkit-media-controls-fullscreen-button
+{
+    display: none !important;
+}
+
+.fullscreen-button {
+    position: absolute;
+    top: 3%;
+    color: #ffffff;
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 5px;
+    background-color: #25bdb4!important;
+
+}
+
+.watermark {
+    position: absolute;
+    left: 3%;
+    top: 3%;
+    color: white;
+    -webkit-animation: 30s moving-watermark infinite;
+    animation: 30s moving-watermark infinite;
+    z-index: 1;
+    opacity: 0.5;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        background-color: #25bdb4!important;
+}
+
+@keyframes moving-watermark {
+    0%   {left: 3%; top: 3%;}
+    25% {left: 93%; top: 3%;}
+    50% {left: 93%; top: 85%;}
+    75% {left: 3%; top: 85%;}
+    100% {left: 3%; top: 3%;}
+}
+.vjs-theme-fantasy .vjs-play-progress, .vjs-theme-fantasy .vjs-play-progress:before {
+    background-color: #25bdb4!important;
+}
+
+ul.tag-list {
+    display: flex;
+    list-style: circle;
+}
+span.tagged_as a {
+    background-color: whitesmoke;
+    padding: 7px 5px;
+    margin: 5px 2px;
+    color: black;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.product_meta>span a, .product_meta>span span {
+    color: #777;
+    display: inline-block;
+    font-weight: 400;
+    margin: 0 1px;
+}
+.border-lux {
+    border-bottom: 3px solid;
+    border-image-source: linear-gradient(to right, #11182700 30% , #d7d7d752 , #11182700 70%);
+    border-image-slice: 1;
 }

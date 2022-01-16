@@ -14,7 +14,7 @@ class PageForm extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag ;
+    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag = '' ;
     public $updateMode = false;
     public $isDisabled = 'disabled';
     public $isUpdating = 'بروزرسانی ...';
@@ -26,7 +26,8 @@ class PageForm extends Component
         $this->description = '';
         $this->user_id = '';
         $this->video = '';
-        $this->tag = '';
+        $this->emit('productStore');
+
     }
 
     protected $rules = [
@@ -34,15 +35,13 @@ class PageForm extends Component
         'user_id' => 'required',
         'video' => 'required',
         'image' => 'required',
-        'description' => 'required',
+        'description' => 'nullable',
         'tag' => 'nullable',
     ];
     protected $messages = [
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
         'user_id.required' => 'وارد کردن این بخش الزامی میباشد' ,
         'video.required' => 'وارد کردن این بخش الزامی میباشد' ,
-        'description.required' => 'وارد کردن این بخش الزامی میباشد' ,
-
     ];
 
     protected function updated($input) {
@@ -127,7 +126,7 @@ class PageForm extends Component
     ]);
     $this->resetInputFields();
     $this->dispatchBrowserEvent('close-modal');
-
+    $this->emit('productStore');
     }
 
       public function render()

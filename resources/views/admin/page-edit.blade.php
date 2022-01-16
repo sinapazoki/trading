@@ -5,7 +5,8 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 @endsection
 
 
@@ -84,20 +85,19 @@
                                                      {{$message}}
                                                     @enderror
 
+                                                    <div class="mt-3">
+                                                        <label for="user_id">انتخاب تگ</label>
+                                                        <select multiple name="tag[]" id='myselect' class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                                            @foreach ($tags as $key=>$value )
+                                                            <option @if(in_array($key , $page_tags)) selected @endif
+                                                            value="{{$key}}">{{$value}}</option>
+                                                            @endforeach
 
-
-                                                    <label for="user_id">انتخاب تگ</label>
-                                                <select multiple name="tag[]" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
-                                                    <option value="" selected hidden>انتخاب کنید</option>
-                                                    @foreach ($tags as $key=>$value )
-                                                    <option @if(in_array($key , $page_tags)) selected @endif
-                                                     value="{{$key}}">{{$value}}</option>
-                                                      @endforeach
-
-                                                  </select>
-                                                     @error('tag')
-                                                     {{$message}}
-                                                    @enderror
+                                                        </select>
+                                                            @error('tag')
+                                                            {{$message}}
+                                                            @enderror
+                                                    </div>
                                               </div>
                                           </div>
 
@@ -238,4 +238,10 @@
     $('#video').filemanager('files', {prefix: route_prefix});
 
 </script>
+<script>
+    $('#myselect').select2({
+      width: '100%',
+      placeholder: "یک گزینه انتخاب کنید ...",
+    });
+  </script>
 @endsection
