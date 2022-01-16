@@ -106,9 +106,10 @@
             <div class="xl:col-span-9 break-words lg:col-span-8 bg-white shadow-sm rounded-lg px-6 py-6">
                 @trade
                 <h3 class="flex items-center text-[#25bdb4] text-2xl pb-4 font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>ویدیو دوره</h3>
+                <div id="vid-cont" class="video-container">
                              <video
                     id="my-video"
-                    class="video-js vjs-theme-fantasy"
+                    class="video video-js vjs-theme-fantasy"
                     controls
                     preload="auto"
                     poster ="https://www.hoseinifinance.com/back-end/media/productfile/None/None_2021-12-20_155829.818102.jpg"
@@ -118,6 +119,9 @@
 
                     <source src="{{$page->video}}" type="video/mp4" />
                 </video>
+                <i class="watermark">{{auth()->user()->id}}</i>
+                <button class="fullscreen-button" onclick="toggleFullscreen()">Toggle fullscreen</button>
+                </div>
                 @endtrade
                  <h3 class="flex items-center text-[#25bdb4] pt-4 text-2xl font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>توضیحات</h3>
                  <div class="text-justify text-slate-500 pt-3 leading-8">{!!$page->description!!}</div>
@@ -194,5 +198,25 @@
 
 @section('footer-scripts')
 <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-
+<script>
+    function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.getElementById('vid-cont').requestFullscreen();
+    } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+}
+</script>
+<script>
+videojs('my-video', {
+  userActions: {
+    doubleClick: false
+  }
+});
+videojs('my-video', {
+  controlBar: {
+    fullscreenToggle: false
+  }
+});
+</script>
 @endsection

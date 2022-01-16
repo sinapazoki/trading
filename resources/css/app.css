@@ -145,6 +145,7 @@ html {
 
 .vjs-poster {
     border-radius: 15px;
+    z-index: 2;
 }
 
 .vjs-poster::before {
@@ -166,6 +167,7 @@ html {
     color: #ffffff!important;
     background-color: #25bdb4!important;
     border-radius: 50%!important;
+    z-index: 3;
 }
 
 @keyframes shadow-pulse {
@@ -214,4 +216,56 @@ button.vjs-big-play-button::before {
     -webkit-animation: shadow-pulse-small 0.90s cubic-bezier(.76, .6, .68, .16) infinite;
     animation: shadow-pulse-small 0.90s cubic-bezier(.76, .6, .68, .16) infinite;
     content: "";
+}
+
+.video-container {
+    position: relative;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+}
+
+.fullscreen-button {
+    position: absolute;
+    top: 2%;
+    left: 90%;
+    z-index: 10;
+}
+
+.watermark {
+    position: absolute;
+    z-index: 1;
+    left: 3%;
+    top: 3%;
+    color: white;
+    animation: 30s moving-watermark infinite;
+}
+
+@keyframes moving-watermark {
+    0% {
+        left: 3%;
+        top: 3%;
+    }
+    25% {
+        left: 85%;
+        top: 3%;
+    }
+    50% {
+        left: 85%;
+        top: 85%;
+    }
+    75% {
+        left: 3%;
+        top: 85%;
+    }
+    100% {
+        left: 3%;
+        top: 3%;
+    }
 }
