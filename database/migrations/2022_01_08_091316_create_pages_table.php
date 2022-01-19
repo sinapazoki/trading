@@ -18,6 +18,8 @@ class CreatePagesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description');
+            $table->string('seo_title')->nullable();
+            $table->string('seo_description')->nullable();
             $table->string('image');
             $table->string('status')->default('1');
             $table->string('video');

@@ -43,6 +43,13 @@
                           {{$message}}
                           @enderror
 
+                          <div class="md:col-span-4">
+                            <label for="seo_title">عنوان سئو</label>
+                            <input name="seo_title"  id="seo_title" value="{{ $page->seo_title }}" type="text"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                            @error('seo_title')
+                            {{$message}}
+                            @enderror
+                          </div>
                   </div>
                 </div>
 
