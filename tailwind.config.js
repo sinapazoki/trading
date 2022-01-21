@@ -19,6 +19,10 @@ module.exports = {
                 image: {
                     '0%, 100%': { transform: 'translateY(-25%)' },
                     '50%': { transform: 'none' },
+                },
+                left: {
+                    '0%, 100%': { transform: 'translateX(-25%)' },
+                    '50%': { transform: 'none' },
                 }
             }
         }

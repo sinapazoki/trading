@@ -1,6 +1,7 @@
 @extends('site.layouts.master')
-@section('title' , 'صفحه اصلی')
+@section('title' , $page->seo_title)
 @section('header-scripts')
+<link rel="canonical" href="{{asset($page->slug)}}" />
 <link
   href="https://unpkg.com/video.js@7/dist/video-js.min.css"
   rel="stylesheet"
@@ -57,9 +58,11 @@
                     @guest
                     <div class="flex items-center lg:flex-row flex-col">
                         <img class="w-16" src="{{asset('/storage/site/security.png')}}">
+
                     <a href="/login" class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px]">
                         برای مشاهده محتوای این بخش نیاز به <span class="text-[#25bdb4] px-2"> ورود / ثبت نام </span> دارید!
                     </a>
+
                     </div>
                     @endguest
                     @trade
@@ -128,7 +131,7 @@
 
                     <source src="{{asset($page->video)}}" type="video/mp4" />
                 </video-js>
-                <i class="watermark cursor-context-menu	">@if(auth()->check()) {{auth()->user()->id}} @endif</i>
+                <i class="watermark-md md:watermark cursor-context-menu	">@if(auth()->check()) {{auth()->user()->id}} @endif</i>
                 <button class="fullscreen-button text-[10px] left-[79%] md:left-[90%] md:text-[12px]" onclick="toggleFullscreen()">تمام صفحه</button>
             </div>
             @endtrade

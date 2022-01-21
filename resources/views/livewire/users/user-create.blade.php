@@ -71,7 +71,7 @@
 
                     <div class="md:col-span-2">
                       <label for="password">رمز عبور (حداقل 8 کاراکتر)</label>
-                      <input wire:model="password" type="password" name="password" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                      <input wire:model.lazy="password" type="password" name="password" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                       @error('password')
                       {{$message}}
                         @enderror

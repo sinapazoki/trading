@@ -14,7 +14,7 @@ class PageForm extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag = '' ;
+    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag = [] , $seo_title , $seo_description;
     public $updateMode = false;
     public $isDisabled = 'disabled';
     public $isUpdating = 'بروزرسانی ...';
@@ -26,17 +26,21 @@ class PageForm extends Component
         $this->description = '';
         $this->user_id = '';
         $this->video = '';
-        $this->emit('productStore');
+        $this->tag = '';
+        $this->seo_title = '';
+        $this->seo_description = '';
 
     }
 
     protected $rules = [
-        'name' => 'required|max:20',
+        'name' => 'required|max:40',
         'user_id' => 'required',
         'video' => 'required',
         'image' => 'required',
         'description' => 'nullable',
         'tag' => 'nullable',
+        'seo_title' => 'nullable',
+        'seo_description' => 'nullable',
     ];
     protected $messages = [
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
@@ -89,7 +93,10 @@ class PageForm extends Component
        $this->slug = SlugService::createSlug(Page::class, 'slug', $this->name);
    }
 
-
+   public function updatedName($value)
+   {
+      $this->seo_title =  $this->name . " | تریدینگ ورلد ";
+   }
 
    public function edit($id)
    {
@@ -116,17 +123,46 @@ class PageForm extends Component
     $pages->user_id = $this->user_id;
     $pages->video = $this->video;
     $pages->slug = $this->slug;
-    $pages->save();
+    $pages->seo_title = $this->seo_title;
     if($this->tag)
     {
-         $pages->tags()->attach($this->tag);
+        $list_tag = $this->tag;
+      foreach( $list_tag as $k => $v)
+      {
+        if(!Tag::where('id', $v)->first())
+        {
+           // dd($v);
+            $sina = new Tag();
+            $sina->name = $v;
+            $sina->save();
+            $new[] = $sina->id;
+        }
+        else{
+            $old[] = $v ;
+        }
     }
+    }
+    if(isset($new) && isset($old))
+    {
+        $data = array_merge($new, $old);
+    }
+    elseif(isset($new))
+    {
+        $data = $new;
+    }
+    else{
+        $data = $old;
+    }
+    $pages->save();
+    $pages->tags()->attach( $data);
+
     $this->alert('success', 'دوره جدید با موفقیت اضافه شد.', [
         'position' => 'center'
     ]);
     $this->resetInputFields();
     $this->dispatchBrowserEvent('close-modal');
     $this->emit('productStore');
+
     }
 
       public function render()

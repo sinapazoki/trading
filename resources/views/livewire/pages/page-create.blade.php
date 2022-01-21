@@ -51,6 +51,13 @@
                           {{$message}}
                           @enderror
 
+                          <div class="md:col-span-4">
+                      <label for="name">عنوان سئو</label>
+                      <input wire:model="seo_title" type="text" name="seo_title" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                      @error('seo_title')
+                      {{$message}}
+                      @enderror
+                    </div>
                   </div>
                 </div>
 
@@ -107,6 +114,8 @@
                                                                 <script>
                                                             $(document).ready(function () {
                                                                 $('#select2-dropdown').select2({
+                                                                    tags: true,
+                                                                    tokenSeparators: [',', ' '],
                                                                     width: '100%',
                                                                     placeholder: "یک گزینه انتخاب کنید ...",
                                                                 });

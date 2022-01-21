@@ -9,7 +9,7 @@
         class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
         >
         <div
-            class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
+            class="p-3 ml-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
         >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -21,12 +21,12 @@
             <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
             >
-            Total clients
+            تعداد کاربران
             </p>
             <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
             >
-            6389
+            {{count($users)}}
             </p>
         </div>
         </div>
@@ -35,7 +35,7 @@
         class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
         >
         <div
-            class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
+            class="p-3 ml-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
         >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -49,12 +49,12 @@
             <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
             >
-            Account balance
+            تعداد دوره ها
             </p>
             <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
             >
-            $ 46,760.89
+            {{count($pages)}}
             </p>
         </div>
         </div>
@@ -63,7 +63,7 @@
         class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
         >
         <div
-            class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+            class="p-3 ml-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
         >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -75,12 +75,12 @@
             <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
             >
-            New sales
+            تعداد برچسب ها
             </p>
             <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
             >
-            376
+            {{count($tags)}}
             </p>
         </div>
         </div>
@@ -89,7 +89,7 @@
         class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
         >
         <div
-            class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
+            class="p-3 ml-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
         >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -103,12 +103,11 @@
             <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
             >
-            Pending contacts
-            </p>
+            تعداد صفحات             </p>
             <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
             >
-            35
+            0
             </p>
         </div>
         </div>

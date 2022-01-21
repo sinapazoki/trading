@@ -19,6 +19,11 @@ class PageController extends Controller
         return view('admin.page');
     }
 
+    public function mainpage()
+    {
+        $pages = Page::where('status' , '1')->get();
+        return view('site.page-main', ['pages' => $pages] );
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -95,6 +100,7 @@ class PageController extends Controller
             'name' => 'required',
             'description' => 'required',
             'tag' => 'required',
+            'seo_title' => 'required',
         ]);
         $page->update($request->all());
        $tag_list = array_filter($request['tag'] ,'strlen');

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\TagController;
 
 Route::prefix('admin')->middleware('admin')->group(function () {
 
-    Route::view('/', 'admin.home')->name('admin.home');
+    Route::get('/', [AdminController::class, 'index'])->name('admin.home');
     Route::get('user', [UserController::class, 'index'])->name('admin.user.index');
     Route::get('page', [PageController::class, 'index'])->name('admin.page.index');
     Route::get('tag', [TagController::class, 'index'])->name('admin.tag.index');
@@ -30,6 +31,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     });
 });
 Route::get('pages/{page}', [PageController::class, 'show'])->name('page.show');
-
+Route::get('/', [PageController::class, 'mainpage'])->name('page.main');
 
 require __DIR__.'/auth.php';
