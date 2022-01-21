@@ -16,8 +16,8 @@ module.exports = {
     theme: {
         extend: {
             keyframes: {
-                bounce: {
-                    '0%, 100%': { transform: 'translateX(-25%)' },
+                image: {
+                    '0%, 100%': { transform: 'translateY(-25%)' },
                     '50%': { transform: 'none' },
                 }
             }

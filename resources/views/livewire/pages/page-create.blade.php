@@ -39,8 +39,12 @@
                                     })
                             </script>
                             <script>
-                                function dothis(){ CKEDITOR.instances.description.setData(''); }
+                                function dothis()
+                                {
+                                    CKEDITOR.instances.description.setData('');
+                                }
                             </script>
+
                         </div>
                           </div>
                           @error('description')
@@ -68,7 +72,7 @@
                                           <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 1 ? selected = 1 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
-                                                      انتخاب نام برگزارکننده دوره
+                                                     نام برگزار کننده / برچسب دوره
                                                     </span>
                                                     <div  wire:ignore class="transform " :class="selected == 1 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                                 </div>
@@ -77,7 +81,7 @@
                                           <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                               <div class="p-6">
 
-                                                <label for="user_id">انتخاب استاد</label>
+                                                <label for="user_id">انتخاب برگزار کننده</label>
                                                 <select wire:model="user_id" name="user_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                                                     <option value="" selected hidden>انتخاب کنید</option>
                                                     @foreach ($roles as $role )
@@ -88,19 +92,36 @@
                                                      @error('user_id')
                                                      {{$message}}
                                                     @enderror
+                                                    <div wire:ignore class="mt-2">
+                                                        <label for="user_id">انتخاب تگ</label>
+                                                        <select multiple wire:model="tag" id="select2-dropdown" name="tag" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                                            @foreach ($tags as $tag )
+                                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                            @error('tag')
+                                                            {{$message}}
+                                                            @enderror
+
+                                                                <script>
+                                                            $(document).ready(function () {
+                                                                $('#select2-dropdown').select2({
+                                                                    width: '100%',
+                                                                    placeholder: "یک گزینه انتخاب کنید ...",
+                                                                });
+                                                                $('#select2-dropdown').on('change', function (e) {
+                                                                    let data = $(this).val();
+                                                                    @this.set('tag', data);
+                                                                });
+                                                                window.livewire.on('productStore', () => {
+                                                                    $('#select2-dropdown').select2();
+                                                                });
+                                                            });
+                                                        </script>
+                                                        </div>
 
 
-                                                      <label for="user_id">انتخاب تگ</label>
-                                                <select multiple wire:model="tag" name="tag" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
-                                                    <option value="" selected hidden>انتخاب کنید</option>
-                                                    @foreach ($tags as $tag )
-                                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                                    @endforeach
-
-                                                  </select>
-                                                     @error('tag')
-                                                     {{$message}}
-                                                    @enderror
                                               </div>
                                           </div>
 
@@ -134,7 +155,7 @@
 
                                                       <a id="lfm" data-input="thumbnail" data-preview="holder">
                                                        <label class="w-64 m-auto flex justify-center items-center py-1.5 rounded-md tracking-wide uppercase ursor-pointer text-gray ease-linear transition-all duration-150">
-                                                           <svg class="animate-bounce h-10 w-10 text-[#00b9c0]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                           <svg class="animate-[image_1s_ease-in-out_infinite] h-10 w-10 text-[#00b9c0]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                              </svg>
                                                              <div class="flex flex-col">
@@ -208,7 +229,7 @@
                   </div>
                   <div class="md:col-span-4 text-left">
                     <div class="inline-flex items-end">
-                     <button  @click ="form =!form" class="w-40 bg-gradient-to-tr from-[#e91e63] to-[#f44336] hover:from-[#f44336] hover:to-[#e91e63] text-white font-bold py-2 px-6 rounded ml-3">انصراف</button>
+                     <button  @click ="form =!form" wire:click="cancel()" class="w-40 bg-gradient-to-tr from-[#e91e63] to-[#f44336] hover:from-[#f44336] hover:to-[#e91e63] text-white font-bold py-2 px-6 rounded ml-3">انصراف</button>
                       <button  onclick="dothis()" wire:click="store()" {{ $isDisabled }} class="w-40 bg-gradient-to-tr from-[#00c7ba] to-[#00abc7] hover:from-[#00abc7] hover:to-[#00c7ba] text-white font-bold py-2 px-6 rounded">{{$isUpdating}}</button>
                     </div>
                   </div>

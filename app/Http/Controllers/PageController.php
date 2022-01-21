@@ -56,7 +56,8 @@ class PageController extends Controller
         ->get();
         if($page->status == 1)
         {
-            return view('site.page-show', ['page' => $page] , ['related' => $related]);
+
+            return view('site.page-show', ['page' => $page] , ['related' => $related] );
         }
         else
         {

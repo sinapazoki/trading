@@ -53,15 +53,23 @@
           <div class="mt-2 py-3 border-t-2 border-[#ececec] text-center">
             <div class="flex flex-wrap justify-center">
               <div class="w-full px-4">
-                <div class="flex lg:flex-row flex-col items-center justify-between lg:ml-3">
-
+                <div class="flex mr-auto lg:flex-row flex-col items-center justify-between lg:ml-3">
+                    @guest
                     <div class="flex items-center lg:flex-row flex-col">
                         <img class="w-16" src="{{asset('/storage/site/security.png')}}">
-                      <a href="/login" class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px]">
+                    <a href="/login" class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px]">
                         برای مشاهده محتوای این بخش نیاز به <span class="text-[#25bdb4] px-2"> ورود / ثبت نام </span> دارید!
-                     </a>
-                 </div>
-
+                    </a>
+                    </div>
+                    @endguest
+                    @trade
+                    <div class="flex items-center lg:flex-row flex-col">
+                        <img class="w-16" src="{{asset('/storage/site/security.png')}}">
+                    <p  class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px]">
+                        شما اکنون قادر به مشاهده این محتوا میباشید !
+                    </p>
+                    </div>
+                    @endtrade
                  <div class="flex">
                     <div class="flex flex-row items-center justify-center pt-3 pb-2 ml-4 border-left">
                         <span class="inline-flex ">
@@ -105,35 +113,35 @@
         <div class="md:grid lg:grid-cols-12 gap-3 mb-20">
             <div class="xl:col-span-9 break-words lg:col-span-8 bg-white shadow-sm rounded-lg px-6 py-6">
                 @trade
-                <h3 class="flex items-center text-[#25bdb4] text-2xl pb-4 font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>ویدیو دوره</h3>
-                <div id="vid-cont" class="video-container">
-                             <video
+              <h3 class="flex items-center text-[#25bdb4] text-2xl pb-4 font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>ویدیو دوره</h3>
+              <div id="vid-cont" class="video-container">
+
+                <video-js
                     id="my-video"
                     class="video video-js vjs-theme-fantasy"
                     controls
                     preload="auto"
-                    poster ="https://www.hoseinifinance.com/back-end/media/productfile/None/None_2021-12-20_155829.818102.jpg"
+                    poster ="{{asset($page->image)}}"
                     data-setup="{}"
 
                     >
 
-                    <source src="{{$page->video}}" type="video/mp4" />
-                </video>
-                <i class="watermark">{{auth()->user()->id}}</i>
-                <button class="fullscreen-button" onclick="toggleFullscreen()">Toggle fullscreen</button>
-                </div>
-                @endtrade
-                 <h3 class="flex items-center text-[#25bdb4] pt-4 text-2xl font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>توضیحات</h3>
+                    <source src="{{asset($page->video)}}" type="video/mp4" />
+                </video-js>
+                <i class="watermark cursor-context-menu	">@if(auth()->check()) {{auth()->user()->id}} @endif</i>
+                <button class="fullscreen-button text-[10px] left-[79%] md:left-[90%] md:text-[12px]" onclick="toggleFullscreen()">تمام صفحه</button>
+            </div>
+            @endtrade
+                <h3 class="flex items-center text-[#25bdb4] pt-4 text-2xl font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>توضیحات</h3>
                  <div class="text-justify text-slate-500 pt-3 leading-8">{!!$page->description!!}</div>
                  <h3 class="flex items-center text-[#25bdb4] pt-4 text-2xl font-bold"><i class="bg-[#25bdb4] ml-1 w-2 h-2 rounded-full sm:flex hidden"></i>برچسب ها</h3>
                  <div class="text-justify text-slate-500 pt-3 leading-8">
-                     <ul>
                         @foreach ( $page->tags as $tag )
-                            <li>
-                                <a href="{{asset($tag->slug)}}">{{$tag->name}}</a>
-                            </li>
+                            <span class="tagged_as">
+                                <a href="{{asset('tag/'.$tag->slug)}}">{{$tag->name}}</a>
+                                <span class="meta-sep">,</span>
+                            </span>
                         @endforeach
-                     </ul>
                 </div>
             </div>
             <div class="xl:col-span-3 break-words lg:col-span-4 mt-4 md:mt-0">
@@ -179,7 +187,7 @@
                                   </div>
                                     <div class="flex items-center">
                                     <a href="{{asset('pages/'.$post->slug)}}" class="flex items center  justify-centerleading-3 text-sm text-[#25bdb4] font-bold">مشاهده مطلب
-                                        <i class="w-4 mr-1 group-hover:animate-bounce" data-feather="arrow-left"></i>
+                                        <i class="w-4 mr-1 group-hover:animate-bounce1" data-feather="arrow-left"></i>
                                     </a>
                                    </div>
                           </div>
@@ -199,6 +207,17 @@
 @section('footer-scripts')
 <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
 <script>
+videojs('my-video', {
+  userActions: {
+    doubleClick: false
+  },
+  controlBar: {
+      fullscreenToggle: false ,
+      pictureInPictureToggle: false
+    }
+});
+</script>
+<script>
     function toggleFullscreen() {
     if (!document.fullscreenElement) {
         document.getElementById('vid-cont').requestFullscreen();
@@ -206,17 +225,5 @@
         document.exitFullscreen();
     }
 }
-</script>
-<script>
-videojs('my-video', {
-  userActions: {
-    doubleClick: false
-  }
-});
-videojs('my-video', {
-  controlBar: {
-    fullscreenToggle: false
-  }
-});
 </script>
 @endsection
