@@ -14,6 +14,7 @@
                         <th class="px-4 py-3">آیدی</th>
                         <th class="px-4 py-3 text-right">عنوان دوره</th>
                         <th class="px-4 py-3">برچسب ها</th>
+                        <th class="px-4 py-3">دسته بندی ها</th>
                         <th class="px-4 py-3">تاریخ انتشار</th>
                         <th class="px-4 py-3">وضعیت</th>
                         <th class="px-4 py-3">اقدامات</th>
@@ -56,10 +57,22 @@
 
                         </td>
                         <td class="px-4 py-3 text-sm">
+                            @if (count($page->categories)>0)
+                            <ul>
+                                @foreach ( $page->categories as $cat )
+                                <li>{{$cat->name}}</li>
+                               @endforeach
+                            </ul>
+                            @else
+                            بدون دسته بندی
+                            @endif
+
+                        </td>
+                        <td class="px-4 py-3 text-sm">
                             <div class="text-right inline-block">
                                 <p class="font-semibold">آخرین ویرایش</p>
                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                    {{jdate($page->updated_at)->format('%d %B، %Y')}}
+                                    {{$page->created_at}}
                                 </p>
                               </div>
                         </td>

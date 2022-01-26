@@ -71,8 +71,8 @@
                                           <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 1 ? selected = 1 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
-                                                      انتخاب نام برگزارکننده دوره
-                                                    </span>
+                                                    انتخاب برچسب / دسته بندی
+                                                </span>
                                                     <div class="transform " :class="selected == 1 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                                 </div>
                                           </button>
@@ -80,14 +80,9 @@
                                           <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                               <div class="p-6">
 
-                                                <label for="user_id">انتخاب استاد</label>
-                                                <select name="user_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
-                                                    <option value="" selected hidden>انتخاب کنید</option>
-                                                    @foreach ($roles as $role )
-                                                    <option {{ $page->user_id == $role->id ? 'selected' : '' }} value="{{$role->id}}">{{$role->name}}</option>
-                                                    @endforeach
+                                                <label for="user_id"> برگزار کننده</label>
+                                                <input type="text" value="{{$page->user_id}}" name="user_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
-                                                  </select>
                                                      @error('user_id')
                                                      {{$message}}
                                                     @enderror
@@ -105,6 +100,19 @@
                                                             {{$message}}
                                                             @enderror
                                                     </div>
+                                                    <div class="mt-3">
+                                                        <label for="user_id">انتخاب دسته بندی</label>
+                                                        <select name="category[]" id='myselect-cat' class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                                            @foreach ($cats as $key=>$value )
+                                                            <option @if(in_array($key , $page_cats)) selected @endif
+                                                            value="{{$key}}">{{$value}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                            @error('category')
+                                                            {{$message}}
+                                                            @enderror
+                                                    </div>
                                               </div>
                                           </div>
 
@@ -115,7 +123,7 @@
                                           <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 2 ? selected = 2 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
-                                                  بارگذاری تصویرشاخص
+                                                  بارگذاری تصویرشاخص (مربع)
                                                     </span>
                                                 <div class="transform " :class="selected == 2 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                               </div>
@@ -125,9 +133,9 @@
                                               <div class="p-6">
 
                                                 <div class="md:col-span-full mt-5">
-                                                    <div id="holder" class="user-profile flex flex-col items-center m-auto w-[50%]">
+                                                    <div id="holder" class="thumbnail-img flex flex-col items-center m-auto w-full h-[160px]">
                                                        @if (empty($page->image))
-                                                       <img src="{{ asset('/storage/site/profile.jpeg') }}">
+                                                       <img src="{{ asset('/storage/site/holder.jpg') }}">
                                                        @else
                                                        <img src="{{ asset($page->image) }}">
                                                        @endif
@@ -140,7 +148,7 @@
                                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                              </svg>
                                                              <div class="flex flex-col">
-                                                               <span class="mt-2 text-base leading-normal">انتخاب تصویر شاخص</span>
+                                                              <span class="mt-2 text-base leading-normal">انتخاب تصویر شاخص</span>
                                                                <span class="leading-normal text-[10px]">PNG, JPG, GIF up to 10MB</span>
                                                              </div>
                                                              <input id="thumbnail" class="form-control hidden" type="text" name="image" value="{{ $page->image }}" onchange="this.dispatchEvent(new InputEvent('input'))" />
@@ -153,17 +161,58 @@
 
 
                                       <li class="relative border-b border-gray-200" x-data="{selected:null}">
+                                        <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 3 ? selected = 3 : selected = null">
+                                            <div class="flex items-center justify-between">
+                                                <span>
+                                                بارگذاری تصویرشاخص (مستطیل)
+                                                  </span>
+                                              <div class="transform " :class="selected == 3 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
+                                            </div>
+                                                        </button>
 
-                                          <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 3 ? selected = 3 : selected = null">
+                                        <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container2" x-bind:style="selected == 3 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+                                            <div class="p-6">
+
+                                              <div class="md:col-span-full mt-5">
+                                                  <div id="holder2" class="cover-img flex flex-col items-center m-auto w-full h-[160px]">
+                                                     @if (empty($page->cover))
+                                                     <img src="{{ asset('/storage/site/profile.jpeg') }}">
+                                                     @else
+                                                     <img src="{{ asset($page->cover) }}">
+                                                     @endif
+                                                  </div>
+
+
+                                                    <a id="lfm2" data-input="thumbnail2" data-preview="holder2">
+                                                     <label class="w-64 m-auto flex justify-center items-center py-1.5 rounded-md tracking-wide uppercase ursor-pointer text-gray ease-linear transition-all duration-150">
+                                                         <svg class="animate-bounce h-10 w-10 text-[#00b9c0]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                           </svg>
+                                                           <div class="flex flex-col">
+                                                             <span class="mt-2 text-base leading-normal">انتخاب تصویر شاخص</span>
+                                                             <span class="leading-normal text-[10px]">PNG, JPG, GIF up to 10MB</span>
+                                                           </div>
+                                                           <input id="thumbnail2" class="form-control hidden" type="text" name="cover" value="{{ $page->cover }}" onchange="this.dispatchEvent(new InputEvent('input'))" />
+                                                     </label>
+                                                    </a>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                      <li class="relative border-b border-gray-200" x-data="{selected:null}">
+
+                                          <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 4 ? selected = 4 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
                                                    بارگذاری ویدیو دوره
                                                   </span>
-                                                  <div class="transform " :class="selected == 3 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
+                                                  <div class="transform " :class="selected == 4 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                                 </div>
                                                           </button>
 
-                                          <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container3" x-bind:style="selected == 3 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                                          <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container3" x-bind:style="selected == 4 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
                                               <div class="p-6">
                                                 <div class="md:col-span-4">
                                                     <a id="video" data-input="video_trader" data-preview="holder">
@@ -242,11 +291,22 @@
 
     var route_prefix = "{{route('unisharp.lfm.show')}}";
     $('#lfm').filemanager('files', {prefix: route_prefix});
+    $('#lfm2').filemanager('files', {prefix: route_prefix});
     $('#video').filemanager('files', {prefix: route_prefix});
 
 </script>
 <script>
     $('#myselect').select2({
+        tags: true,
+       tokenSeparators: [','],
+      width: '100%',
+      placeholder: "یک گزینه انتخاب کنید ...",
+    });
+  </script>
+  <script>
+    $('#myselect-cat').select2({
+        tags: true,
+       tokenSeparators: [','],
       width: '100%',
       placeholder: "یک گزینه انتخاب کنید ...",
     });

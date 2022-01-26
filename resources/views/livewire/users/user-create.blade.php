@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="lg:col-span-2">
-                  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
-                    <div class="md:col-span-2">
+                  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
+                    <div class="md:col-span-3">
                       <label for="name">نام و نام خانوادگی</label>
                       <input wire:model="name" type="text" name="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                       @error('name')
@@ -45,7 +45,7 @@
                       @enderror
                     </div>
 
-                    <div class="md:col-span-2">
+                    <div class="md:col-span-3">
                         <label for="phone">شماره تماس</label>
                         <input wire:model="phone" type="text" name="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="09123456789" />
                         @error('phone')
@@ -53,7 +53,7 @@
                           @enderror
                     </div>
 
-                    <div class="md:col-span-4">
+                    <div class="md:col-span-6">
                       <label for="email">آدرس ایمیل</label>
                       <input wire:model="email" type="email" name="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
                       @error('email')
@@ -61,7 +61,7 @@
                      @enderror
                     </div>
 
-                    <div class="md:col-span-4">
+                    <div class="md:col-span-6">
                       <label for="description">درباره کاربر</label>
                       <textarea wire:model="description" name="description" class="h-30 border mt-1 rounded px-4 w-full bg-gray-50">اطلاعات فردی کاربر</textarea>
                       @error('description')
@@ -91,14 +91,26 @@
                             @enderror
                       </div>
 
-                    <div class="md:col-span-5">
+                      <div class="md:col-span-2">
+                        <label for="role">سطح عضویت</label>
+                        <select wire:model="plan" name="plan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                            <option value="" selected hidden>انتخاب کنید</option>
+                            <option value="1">برنزی</option>
+                            <option value="2">نقره ای</option>
+                            <option value="3">طلایی</option>
+                          </select>
+                             @error('plan')
+                             {{$message}}
+                            @enderror
+                      </div>
+                    {{-- <div class="md:col-span-5">
                       <div class="inline-flex items-center">
                         <input wire:model="sms" type="checkbox" name="sms" class="form-checkbox" />
                         <label for="sms" class="mr-2">پیامک اطلاعات برای کاربر ارسال شود</label>
                       </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="md:col-span-4 text-left">
+                    <div class="md:col-span-6 text-left">
                       <div class="inline-flex items-end">
                         <button wire:click.prevent="store()" class="w-40 bg-gradient-to-tr from-[#00c7ba] to-[#00abc7] hover:from-[#00abc7] hover:to-[#00c7ba] text-white font-bold py-2 px-6 rounded">ثبت کاربر</button>
                       </div>

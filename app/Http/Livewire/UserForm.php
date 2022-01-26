@@ -13,7 +13,7 @@ class UserForm extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    public $name , $phone , $password , $email , $image, $role , $user_id, $imageupdated , $description , $sms;
+    public $name , $phone , $password , $email , $image, $role , $user_id, $imageupdated , $description , $sms , $plan;
     public $updateMode = false;
 
 
@@ -23,7 +23,7 @@ class UserForm extends Component
         'email' => 'required|email|unique:users',
         'password' => 'required|min:8',
         'role' => 'required',
-
+        'plan' => 'nullable',
     ];
     protected $messages = [
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
@@ -88,6 +88,7 @@ class UserForm extends Component
         $user->password = bcrypt($this->password);
         $password_unmd5 = $this->password;
         $user->email = $this->email;
+        $user->plan = $this->plan;
         $user->save();
         $this->alert('success', 'ثبت نام با موفقیت انجام شد .', [
             'position' => 'center'
@@ -120,8 +121,7 @@ class UserForm extends Component
             $this->phone = $user->phone;
             $this->role = $user->role->id;
             $this->image = $user->image;
-
-
+            $this->plan = $user->plan;
         }
 
 
@@ -132,6 +132,7 @@ class UserForm extends Component
         $this->role = '';
         $this->email = '';
         $this->sms = '';
+        $this->plan = '';
         $this->image = '';
         $this->description = '';
 
@@ -186,6 +187,7 @@ class UserForm extends Component
                         'phone' => $this->phone,
                         'password' => bcrypt($this->password),
                         'email' => $this->email,
+                        'plan' => $this->plan,
                         'image' => $image,
                         'description' => $this->description,
                     ]);
@@ -196,6 +198,7 @@ class UserForm extends Component
                         'name' => $this->name,
                         'phone' => $this->phone,
                         'email' => $this->email,
+                        'plan' => $this->plan,
                         'image' => $image,
                         'description' => $this->description,
                     ]);

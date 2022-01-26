@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('user', [UserController::class, 'index'])->name('admin.user.index');
     Route::get('page', [PageController::class, 'index'])->name('admin.page.index');
     Route::get('tag', [TagController::class, 'index'])->name('admin.tag.index');
+    Route::get('category', [CategoryController::class, 'index'])->name('admin.cat.index');
     Route::get('page/edit/{page}', [PageController::class, 'edit'])->name('admin.page.edit');
     Route::put('page/update/{page}', [PageController::class, 'update'])->name('admin.page.update');
     Route::view('filemanager', 'admin.filemanager')->name('filemanager');
@@ -32,5 +34,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 Route::get('pages/{page}', [PageController::class, 'show'])->name('page.show');
 Route::get('/', [PageController::class, 'mainpage'])->name('page.main');
+Route::get('/category/{category}', [PageController::class, 'category'])->name('category');
+Route::get('/search',[PageController::class, 'search']);
 
 require __DIR__.'/auth.php';

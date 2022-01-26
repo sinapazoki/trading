@@ -1,4 +1,4 @@
-@extends('site.layouts.master')
+@extends('site.layouts.master-noheader')
 @section('title' , 'صفحه اصلی')
 @section('header-scripts')
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -9,7 +9,7 @@
 
 @section('content')
         <div>
-    <img class="absolute ml-auto w-[50%] h-[80%] z-0 hidden sm:hidden md:block rounded-bl-[20%]" src="{{asset('/storage/site/curved.jpg')}}" alt="image">
+    <img class="absolute ml-auto w-full h-full z-0 md:block" src="{{asset('/storage/site-front/login.jpg')}}" alt="image">
      </div>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}

@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title' , 'مدیریت دوره ها')
+@section('title' , 'مدیریت مطالب')
 @section('header-scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -20,6 +20,7 @@
 
 var route_prefix = "{{route('unisharp.lfm.show')}}";
     $('#lfm').filemanager('files', {prefix: route_prefix});
+    $('#lfm2').filemanager('files', {prefix: route_prefix});
     $('#video').filemanager('files', {prefix: route_prefix});
 
 </script>

@@ -58,7 +58,7 @@
                       href="{{route('admin.page.index')}}"
                     >
                     <div class="menu__icon"> <i data-feather="book"></i> </div>
-                    <div class="menu__title"> دوره های تریدر </div>
+                    <div class="menu__title">مطالب وبلاگ </div>
                     </a>
                   </li>
                   <li class="relative px-6 py-3">
@@ -68,6 +68,15 @@
                     >
                     <div class="menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="menu__title">مدیریت برچسب ها</div>
+                    </a>
+                  </li>
+                  <li class="relative px-6 py-3">
+                    <a
+                      class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                      href="{{route('admin.cat.index')}}"
+                    >
+                    <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="menu__title">مدیریت دسته بندی ها</div>
                     </a>
                   </li>
                   <li class="relative px-6 py-3">

@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('image')->nullable();
             $table->string('status')->default('0');
+            $table->string('plan')->default('0');
             $table->bigInteger('role_id')->default('0')->unsigned()->index();
             $table->string('email')->unique();
             $table->text('description')->nullable();

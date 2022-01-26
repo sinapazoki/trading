@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use App\Models\Category;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Models\Page;
 use App\Models\Role;
@@ -14,7 +16,7 @@ class PageForm extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    public $name , $image , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag = [] , $seo_title , $seo_description;
+    public $name , $image , $cover , $user_id, $imageupdated , $description  , $video , $slug , $page_id , $tag = [] , $seo_title , $seo_description , $category = [];
     public $updateMode = false;
     public $isDisabled = 'disabled';
     public $isUpdating = 'بروزرسانی ...';
@@ -22,11 +24,13 @@ class PageForm extends Component
     public function resetInputFields(){
         $this->name = '';
         $this->image = '';
+        $this->cover = '';
         $this->imageupdated = '';
         $this->description = '';
         $this->user_id = '';
         $this->video = '';
         $this->tag = '';
+        $this->category = '';
         $this->seo_title = '';
         $this->seo_description = '';
 
@@ -34,9 +38,11 @@ class PageForm extends Component
 
     protected $rules = [
         'name' => 'required|max:40',
-        'user_id' => 'required',
+        'user_id' => 'nullable',
         'video' => 'required',
         'image' => 'required',
+        'cover' => 'required',
+        'category' => 'required',
         'description' => 'nullable',
         'tag' => 'nullable',
         'seo_title' => 'nullable',
@@ -46,6 +52,7 @@ class PageForm extends Component
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
         'user_id.required' => 'وارد کردن این بخش الزامی میباشد' ,
         'video.required' => 'وارد کردن این بخش الزامی میباشد' ,
+        'category.required' => 'وارد کردن این بخش الزامی میباشد' ,
     ];
 
     protected function updated($input) {
@@ -63,6 +70,7 @@ class PageForm extends Component
     {
        $page =  Page::find($id);
        $page ->tags()->detach();
+       $page ->categories()->detach();
        $page ->delete();
        $this->resetInputFields();
        $this->alert('warning', 'دوره مورد نظر حذف شد', [
@@ -118,6 +126,7 @@ class PageForm extends Component
     $this->validate();
     $pages = new Page();
     $pages->image = $this->image;
+    $pages->cover = $this->cover;
     $pages->name = $this->name;
     $pages->description = $this->description;
     $pages->user_id = $this->user_id;
@@ -155,6 +164,7 @@ class PageForm extends Component
     }
     $pages->save();
     $pages->tags()->attach( $data);
+    $pages->categories()->attach( $this->category);
 
     $this->alert('success', 'دوره جدید با موفقیت اضافه شد.', [
         'position' => 'center'
@@ -175,6 +185,8 @@ class PageForm extends Component
             'pages' => Page::orderBy('id', 'ASC')->paginate(4),
             'roles' => User::where('role_id' , '2')->get(),
             'tags' => Tag::all(),
+            'cats' => Category::all(),
+
         ]);
        }
 

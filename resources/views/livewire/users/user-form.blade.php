@@ -15,6 +15,7 @@
                         <th class="px-4 py-3">آیدی</th>
                         <th class="px-4 py-3">نام و نام خانوادگی</th>
                         <th class="px-4 py-3">تاریخ عضویت</th>
+                        <th class="px-4 py-3">اشتراک</th>
                         <th class="px-4 py-3">ایمیل</th>
                         <th class="px-4 py-3">شماره تلفن</th>
                         <th class="px-4 py-3">وضعیت</th>
@@ -46,7 +47,18 @@
                           </div>
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            {{jdate($user->created_at)->format('%d %B، %Y')}}
+                            {{-- {{jdate($user->created_at)->format('%d %B، %Y')}} --}}
+                            {{$user->created_at}}
+
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                        @if ($user->plan == 1)
+                            <span>برنزی</span>
+                            @elseif ($user->plan == 2)
+                            <span>نقره ای</span>
+                            @else
+                            <span>طلایی</span>
+                        @endif
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{$user->email}}

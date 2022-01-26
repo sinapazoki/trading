@@ -37,7 +37,8 @@
                             <div class="text-right inline-block">
                                 <p class="font-semibold">آخرین ویرایش</p>
                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                    {{jdate($tag->updated_at)->format('%d %B، %Y')}}
+                                    {{-- {{jdate($tag->updated_at)->format('%d %B، %Y')}} --}}
+                                    {{$tag->created_at}}
                                 </p>
                               </div>
                         </td>

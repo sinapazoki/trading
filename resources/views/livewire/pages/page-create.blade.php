@@ -10,7 +10,7 @@
                 <div class="lg:col-span-2">
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
                     <div class="md:col-span-4">
-                      <label for="name">نام دوره</label>
+                      <label for="name">عنوان مطلب</label>
                       <input wire:model="name" type="text" name="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                       @error('name')
                       {{$message}}
@@ -20,7 +20,7 @@
 
                     <div wire:ignore class="md:col-span-4">
                         <div >
-                            <label for="description">توضیحات دوره</label>
+                            <label for="description">توضیحات</label>
                             <textarea wire:model="description" class="form-control " name="description" id="description"></textarea>
                             <script src="https://cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
 
@@ -65,8 +65,8 @@
 
                 <div class="text-gray-600">
                     <div>
-                        <p class="font-medium text-lg">اطلاعات دوره</p>
-                        <p>اطلاعات مرتبط با هربخش دوره را وارد نمایید :</p>
+                        <p class="font-medium text-lg">اطلاعات تکمیلی</p>
+                        <p>اطلاعات مرتبط با هربخش را وارد نمایید :</p>
 
                         <div class="md:col-span-2">
 
@@ -79,7 +79,7 @@
                                           <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 1 ? selected = 1 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
-                                                     نام برگزار کننده / برچسب دوره
+                                                انتخاب برچسب / دسته بندی
                                                     </span>
                                                     <div  wire:ignore class="transform " :class="selected == 1 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                                 </div>
@@ -88,19 +88,15 @@
                                           <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                               <div class="p-6">
 
-                                                <label for="user_id">انتخاب برگزار کننده</label>
-                                                <select wire:model="user_id" name="user_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
-                                                    <option value="" selected hidden>انتخاب کنید</option>
-                                                    @foreach ($roles as $role )
-                                                    <option value="{{$role->id}}">{{$role->name}}</option>
-                                                    @endforeach
+                                                <label for="user_id"> برگزار کننده</label>
+                                                <input wire:model="user_id" type="text" name="user_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
-                                                  </select>
                                                      @error('user_id')
                                                      {{$message}}
                                                     @enderror
+
                                                     <div wire:ignore class="mt-2">
-                                                        <label for="user_id">انتخاب تگ</label>
+                                                        <label for="user_id">انتخاب برچسب</label>
                                                         <select multiple wire:model="tag" id="select2-dropdown" name="tag" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                                                             @foreach ($tags as $tag )
                                                             <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -111,11 +107,27 @@
                                                             {{$message}}
                                                             @enderror
 
+                                                            <div class="mt-2">
+                                                                <label for="category">انتخاب دسته بندی</label>
+                                                        <select wire:model="category" id="select2-dropdown-cat" name="category" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                                            <option selected value="">دسته مورد نظر را انتخاب نمایید ....</option>
+                                                            @foreach ($cats as $cat )
+                                                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                            @error('category')
+                                                            {{$message}}
+                                                            @enderror
+
+                                                            </div>
+
+
                                                                 <script>
                                                             $(document).ready(function () {
                                                                 $('#select2-dropdown').select2({
                                                                     tags: true,
-                                                                    tokenSeparators: [',', ' '],
+                                                                    tokenSeparators: [','],
                                                                     width: '100%',
                                                                     placeholder: "یک گزینه انتخاب کنید ...",
                                                                 });
@@ -125,6 +137,21 @@
                                                                 });
                                                                 window.livewire.on('productStore', () => {
                                                                     $('#select2-dropdown').select2();
+                                                                });
+                                                            });
+                                                        </script>
+                                                        <script>
+                                                            $(document).ready(function () {
+                                                                $('#select2-dropdown-cat').select2({
+                                                                    width: '100%',
+                                                                    placeholder: "یک گزینه انتخاب کنید ...",
+                                                                });
+                                                                $('#select2-dropdown-cat').on('change', function (e) {
+                                                                    let data = $(this).val();
+                                                                    @this.set('category', data);
+                                                                });
+                                                                window.livewire.on('productStore', () => {
+                                                                    $('#select2-dropdown-cat').select2();
                                                                 });
                                                             });
                                                         </script>
@@ -138,12 +165,10 @@
 
 
                                       <li class="relative border-b border-gray-200" x-data="{selected:null}" x-on:close-modal.window="selected = null">
-
-
                                           <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 2 ? selected = 2 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
-                                                  بارگذاری تصویرشاخص
+                                                      بارگذاری تصویرشاخص  (مربع)
                                                     </span>
                                                 <div  wire:ignore class="transform " :class="selected == 2 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                               </div>
@@ -153,9 +178,9 @@
                                               <div class="p-6">
 
                                                 <div class="md:col-span-full mt-5">
-                                                    <div id="holder" class="user-profile flex flex-col items-center m-auto w-[50%]">
+                                                    <div id="holder" class="thumbnail-img flex flex-col items-center m-auto w-full h-[160px]">
                                                        @if (empty($image))
-                                                       <img src="{{ asset('/storage/site/profile.jpeg') }}">
+                                                       <img src="{{ asset('/storage/site/holder.png') }}">
                                                        @else
                                                        <img src="{{ asset($image) }}">
                                                        @endif
@@ -179,19 +204,58 @@
                                           </div>
                                       </li>
 
-
                                       <li class="relative border-b border-gray-200" x-data="{selected:null}" x-on:close-modal.window="selected = null">
-
                                           <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 3 ? selected = 3 : selected = null">
                                               <div class="flex items-center justify-between">
                                                   <span>
-                                                   بارگذاری ویدیو دوره
+                                                 بارگذاری تصویرشاخص  (مستطیل)
+                                                    </span>
+                                                <div  wire:ignore class="transform " :class="selected == 3 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
+                                              </div>
+                                                          </button>
+
+                                          <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container2" x-bind:style="selected == 3 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+                                              <div class="p-6">
+
+                                                <div class="md:col-span-full mt-5">
+                                                    <div id="holder" class="cover-img flex flex-col items-center m-auto w-full h-[160px]">
+                                                       @if (empty($cover))
+                                                       <img src="{{ asset('/storage/site/holder.png') }}">
+                                                       @else
+                                                       <img src="{{ asset($cover) }}">
+                                                       @endif
+                                                    </div>
+
+
+                                                      <a id="lfm2" data-input="thumbnail2" data-preview="holder">
+                                                       <label class="w-64 m-auto flex justify-center items-center py-1.5 rounded-md tracking-wide uppercase ursor-pointer text-gray ease-linear transition-all duration-150">
+                                                           <svg class="animate-[image_1s_ease-in-out_infinite] h-10 w-10 text-[#00b9c0]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                               <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                             </svg>
+                                                             <div class="flex flex-col">
+                                                               <span class="mt-2 text-base leading-normal">انتخاب تصویر شاخص</span>
+                                                               <span class="leading-normal text-[10px]">PNG, JPG, GIF up to 10MB</span>
+                                                             </div>
+                                                             <input wire:model="cover" id="thumbnail2" class="form-control hidden" type="text" name="cover"  onchange="this.dispatchEvent(new InputEvent('input'))" />
+                                                       </label>
+                                                      </a>
+                                                   </div>
+                                              </div>
+                                          </div>
+                                      </li>
+
+                                      <li class="relative border-b border-gray-200" x-data="{selected:null}" x-on:close-modal.window="selected = null">
+
+                                          <button type="button" class="w-full px-8 py-3 text-left" @click="selected !== 4 ? selected = 4 : selected = null">
+                                              <div class="flex items-center justify-between">
+                                                  <span>
+                                                   بارگذاری ویدیو
                                                   </span>
-                                                  <div  wire:ignore class="transform " :class="selected == 3 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
+                                                  <div  wire:ignore class="transform " :class="selected == 4 ? 'rotate-180' : 'rotate-0'"> <i data-feather="chevron-down"></i> </div>
                                                 </div>
                                                           </button>
 
-                                          <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container3" x-bind:style="selected == 3 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                                          <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container3" x-bind:style="selected == 4 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
                                               <div class="p-6">
                                                 <div class="md:col-span-4">
                                                     <a id="video" data-input="video_trader" data-preview="holder">
@@ -208,8 +272,8 @@
                                                         <span> فایل ویدیو آپلود شد ✔</span>
                                                             @else
                                                             <div class="contents text-gray-400">
-                                                                <span > آپلود فایل قرارداد</span>
-                                                                <span> فایل های مجاز : docx/pdf</span>
+                                                                <span >آپلود فایل ویدیو</span>
+                                                                <span> فایل های مجاز : mp4</span>
                                                             </div>
                                                             @endif
 

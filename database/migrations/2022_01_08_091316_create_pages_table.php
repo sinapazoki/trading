@@ -21,10 +21,10 @@ class CreatePagesTable extends Migration
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
             $table->string('image');
+            $table->string('cover');
             $table->string('status')->default('1');
             $table->string('video');
-            $table->bigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('user_id')->nullable();
 
             $table->timestamps();
         });

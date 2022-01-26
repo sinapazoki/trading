@@ -8,7 +8,7 @@
                 <div class="text-gray-600">
                   <p class="font-medium text-lg">اطلاعات برچسب</p>
                   <p>نام برچسب را وارد نمایید:</p>
-                  <input wire:model="tag_id" name="tag_id">
+                  <input hidden wire:model="tag_id" name="tag_id">
                 </div>
                 <div class="lg:col-span-2">
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">

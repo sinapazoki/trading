@@ -8,7 +8,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
-            <div class="md:col-span-4 relative text-center text-2xl" >
+            <div class="md:col-span-4 relative text-center text-white text-2xl p-5" >
                 ورود / عضویت
             </div>
             <div class="md:col-span-2 relative" >
@@ -42,7 +42,7 @@
                 <div class="block mt-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                        <span class="mr-2 text-sm text-gray-600 font-iranyekan">{{ __('مرا به خاطر بسپار') }}</span>
+                        <span class="mr-2 text-sm text-white font-iranyekan">{{ __('مرا به خاطر بسپار') }}</span>
                     </label>
                 </div>
 
@@ -53,14 +53,14 @@
                     </x-button>
 
                     @if (Route::has('password.request'))
-                        <a class="text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        <a class="text-sm text-white hover:text-gray-900" href="{{ route('password.request') }}">
                             {{ __('رمز عبور خود را فراموش کردید ؟') }}
                         </a>
                     @endif
 
                 </div>
             </form>
-                <hr class="vertical dark hidden sm:block">
+                <hr class="vertical white hidden sm:block">
           </div>
 
 
@@ -73,10 +73,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
                 </svg>
             </div>
-            <p class="text-justify leading-6">
-                جهت ثبت نام در سایت و دسترسی به محتوای ویژه لطفا عبارت ثبت نام را در دایرکت پیج اینستاگرام تریدینگ ورلد ارسال کنید.
+            <p class="text-justify text-white text-lg leading-7">
+                جهت ثبت نام در سایت و دسترسی به محتوای ویژه لطفا عبارت "ثبت نام" را در دایرکت پیج اینستاگرام تریدینگ ورلد ارسال کنید.
             </p>
-            <button type="button" class="flex mt-2 justify-center w-full bg-gradient-to-r hover:from-indigo-600 hover:via-pink-600 hover:to-red-600 focus:outline-none hover:text-white text-md uppercase font-bold border-2 rounded-lg mx-auto">
+            <button type="button" class="flex text-white mt-2 justify-center w-full bg-gradient-to-r hover:from-indigo-600 hover:via-pink-600 hover:to-red-600 focus:outline-none hover:text-white text-md uppercase font-bold border-2 rounded-lg mx-auto">
                 <div class="flex sm:flex-cols-12 gap-2 p-1 flex-row-reverse items-center">
                     <div class="col-span-1 px-2 border-r">
                         <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="w-5 h-full mx-auto" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -87,7 +87,10 @@
                 </div>
             </button>
         </div>
-
+        <div class="md:col-span-4 relative text-center text-white text-sm p-5" >
+            <a href="/">بازگشت به صفحه اصلی
+            </a>
+        </div>
         </div>
 
 

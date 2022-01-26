@@ -17,6 +17,7 @@ class Page extends Model
         'description',
         'status',
         'image',
+        'cover',
         'video',
         'user_id',
     ];
@@ -28,6 +29,9 @@ class Page extends Model
     }
     public function tags(){
         return $this->belongsToMany(Tag::class);
+    }
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
     public function sluggable(): array
     {
