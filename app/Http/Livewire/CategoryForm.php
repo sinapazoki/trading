@@ -7,11 +7,12 @@ use Livewire\Component;
 
 class CategoryForm extends Component
 {
-    public $name , $slug , $category_id;
+    public $name , $slug , $category_id , $cover;
     public $updateMode = false;
 
     protected $rules = [
         'name' => 'required',
+        'cover' => 'nullable',
     ];
     protected $messages = [
         'name.required' => 'وارد کردن این بخش الزامی میباشد' ,
@@ -54,6 +55,7 @@ class CategoryForm extends Component
        $category = Category::where('id',$id)->first();
        $this->category_id = $id;
        $this->name = $category->name;
+       $this->cover = $category->cover;
        $this->slug = $category->slug;
    }
 
@@ -61,6 +63,7 @@ class CategoryForm extends Component
     $this->validate();
     $category = new Category();
     $category->name = $this->name;
+    $category->cover = $this->cover;
     $category->slug = $this->slug;
     $category->save();
     $this->alert('success', 'دسته بندی جدید اضافه شد', [
@@ -74,6 +77,7 @@ class CategoryForm extends Component
             $category = Category::find($this->category_id);
                 $category->update([
                     'name' => $this->name,
+                    'cover' => $this->cover,
                 ]);
 
             $this->updateMode = false;
@@ -88,6 +92,7 @@ class CategoryForm extends Component
 
    private function resetInputFields(){
     $this->name = '';
+    $this->cover = '';
 }
     public function render()
     {

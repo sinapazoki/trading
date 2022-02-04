@@ -12,6 +12,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+       'cover',
     ];
 
     public function sluggable(): array

@@ -18,7 +18,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            DB::table('users')->where('created_at', '<', Carbon::now()->subMinutes(2))->update(['role_id' => '8']);
+            DB::table('users')->where('updated_at', '<', Carbon::now()->subMinutes(2))->update(['plan' => '2']);
+            DB::table('users')->where('updated_at', '<', Carbon::now()->subMinutes(3))->update(['plan' => '3']);
+
         });
     }
 

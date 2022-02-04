@@ -13,7 +13,7 @@ class UserForm extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    public $name , $phone , $password , $email , $image, $role , $user_id, $imageupdated , $description , $sms , $plan;
+    public $name , $phone , $password , $email , $image, $role , $user_id, $imageupdated , $description , $sms , $plan , $filter_plan = 'all';
     public $updateMode = false;
 
 
@@ -159,11 +159,21 @@ class UserForm extends Component
 
       public function render()
        {
+            if($this->filter_plan != 'all' )
+            {
+                return view('livewire.users.user-form' , [
+                    'users' => User::where('plan' , $this->filter_plan)->paginate(2),
+                    'roles' => Role::all(),
+                ]);
+            }
+            else
+            {
+                return view('livewire.users.user-form' , [
+                    'users' => User::orderBy('id', 'ASC')->paginate(2),
+                    'roles' => Role::all(),
+                ]);
+            }
 
-        return view('livewire.users.user-form' , [
-            'users' => User::orderBy('id', 'ASC')->paginate(2),
-            'roles' => Role::all(),
-        ]);
       }
 
         public function update()

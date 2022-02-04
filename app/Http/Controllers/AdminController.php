@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Page;
 use App\Models\Tag;
 use App\Models\User;
@@ -19,7 +20,8 @@ class AdminController extends Controller
         $users = User::all();
         $tags = Tag::all();
         $pages = Page::all();
-        return view('admin.home',compact('pages' , 'users' , 'tags'));
+        $cats = Category::all();
+        return view('admin.home',compact('pages' , 'users' , 'tags', 'cats'));
     }
 
     /**

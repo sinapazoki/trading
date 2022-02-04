@@ -14,14 +14,19 @@
 
 
 @section('content')
-
+        @foreach ( $page->categories as $category)
+        <?php  $cover = $category->cover  ?>
+        @endforeach
   <section class="relative block h-[13rem] sm:h-[30rem] mt-16">
-    <div class="absolute top-0 w-full h-full bg-left sm:bg-center bg-cover bg-[url('/storage/site/trader.jpg')]" >
+    <div class="absolute top-0 w-full h-full bg-left sm:bg-center bg-cover" style="background-image: url({{ $cover}}" >
       <span id="blackOverlay" class="w-full h-full absolute sm:bg-gradient-to-l from-slate-900">
-        <div class="md:top-1/4 top-[80%] sm:top-[35%] bg-white sm:bg-inherit absolute text-white p-4 sm:p-0 rounded-lg sm:right-[20%] right-[11%] ">
+        <div class="container mx-auto relative top-[80%] sm:top-[30%] p-4">
+
+        <div class="md:top-1/4  bg-white sm:bg-inherit text-white p-4 sm:p-0 rounded-lg ">
             <p class="text-[#25bdb4] sm:text-white">ویدیو مصاحبه با</p>
             <p class="md:text-5xl text-[23px] text-[#25bdb4] py-3">حرفه ای ترین تریدرهای مارکت</p>
             <p class="md:text-2xl text-[11px] text-[#25bdb4] sm:text-white">مسیر درست معامله گری رو باید از حرفه ای های بازار یاد گرفت</p>
+        </div>
         </div>
       </span>
     </div>
@@ -33,56 +38,57 @@
         <div class="relative flex flex-col min-w-0 break-words w-full rounded-lg">
         <div class="md:grid lg:grid-cols-12 gap-3 mb-20 relative ">
             <div class="xl:col-span-9 break-words lg:col-span-8 bg-white shadow-sm rounded-lg px-6 py-6">
-                <div class="flex mr-auto lg:flex-row flex-col items-center justify-between border-b-2 lg:ml-3">
+                <div class="flex mr-auto lg:flex-row flex-col items-center justify-between border-b-2 pb-2 bg-gradient-to-r from-[#0e7977] to-[#152c3e] p-[7px] rounded-md ">
                     @guest
                     <div class="flex items-center lg:flex-row flex-col">
-                        <img class="w-16" src="{{asset('/storage/site/security.png')}}">
-
-                    <a href="/login" class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px]">
-                        برای مشاهده محتوای این بخش نیاز به <span class="text-[#25bdb4] px-2"> ورود / ثبت نام </span> دارید!
-                    </a>
+                        <img class="w-12 ml-2" src="{{asset('/storage/site-front/gold.png')}}">
+                        <div class="text-center sm:text-right">
+                            <span class="text-[#25bdb4]">این یک محتوای ویژه است</span>
+                            <a href="/login" class="flex items-center font-bold lg:text-sm group text-[11px] text-white">
+                                برای دسترسی به محتوای این بخش <span class="text-[#25bdb4] px-2">  ثبت نام </span> کنید !
+                            </a>
+                        </div>
 
                     </div>
                     @endguest
-                    @trade
+                    @auth
+                    @if ($access)
                     <div class="flex items-center lg:flex-row flex-col">
-                        <img class="w-16" src="{{asset('/storage/site/security.png')}}">
-                    <p  class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px]">
+                        <img class="w-12 ml-2" src="{{asset('/storage/site-front/gold.png')}}">
+                    <p  class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px] text-white">
                         شما اکنون قادر به مشاهده این محتوا میباشید !
                     </p>
                     </div>
-                    @endtrade
+                    @else
+                    <div class="flex items-center lg:flex-row flex-col">
+                        <img class="w-12 ml-2" src="{{asset('/storage/site-front/gold.png')}}">
+                    <p  class="flex items-center font-bold lg:text-sm group md:h-14 text-[11px] text-white">
+                       دسترسی شما برای مشاهده این مطلب کافی نیست !
+                    </p>
+                </div>
+
+                    @endif
+                    @endauth
                  <div class="flex">
-                    <div class="flex flex-row items-center justify-center pt-3 pb-2 ml-4 border-left">
+                    <div class="flex flex-row items-center justify-center pt-3 pb-2 ml-4">
                         <span class="inline-flex ">
                             <svg class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1792 23.9333C2.54046 23.9333 0.474609 21.8674 0.474609 12.2287C0.474609 2.59002 2.54046 0.52417 12.1792 0.52417C21.8178 0.52417 23.8837 2.59002 23.8837 12.2287C23.8837 21.8674 21.8178 23.9333 12.1792 23.9333ZM11.2038 6.37644C11.2038 5.83773 11.6405 5.40106 12.1792 5.40106C12.7178 5.40106 13.1545 5.83773 13.1545 6.37644V11.2533H18.0314C18.5701 11.2533 19.0068 11.69 19.0068 12.2287C19.0068 12.7674 18.5701 13.2041 18.0314 13.2041H12.1792C11.6405 13.2041 11.2038 12.7674 11.2038 12.2287V6.37644Z" fill="#25bdb4"></path>
                         </svg>
                         </span>
                         <div class="flex flex-col text-right">
-                            <span class="text-[12px] text-[#b8b8b8]">آخرین بروزرسانی</span>
-                            <span class="text-sm text-chambray-700 font-bold">{{$page->updated_at->toDateString()}}</span>
+                            <span class="text-[12px] text-[#b8b8b8]">تاریخ انتشار</span>
+                            <span class="text-sm text-white font-bold">{{$page->created_at->toDateString()}}</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-row items-center justify-center pt-3 pb-2">
-                        <span class="inline-flex ">
-                            <svg class="ml-3" width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.50847 10.9168C12.107 14.744 12.9322 14.744 19.5307 10.9168C26.1292 7.08956 26.1292 7.08956 19.5307 3.26237C12.9322 -0.564826 12.107 -0.564837 5.50847 3.26237C2.20921 5.17597 0.55957 6.13277 0.55957 7.08957V15.7008C0.55957 16.2292 0.987944 16.6576 1.51637 16.6576C2.0448 16.6576 2.47317 16.2292 2.47317 15.7008L2.47317 9.45617C2.47317 9.30453 2.64132 9.21274 2.76975 9.29336C3.50113 9.75249 4.41404 10.282 5.50847 10.9168Z" fill="#25bdb4"></path>
-                                <path d="M5.50847 11.8736C12.107 15.7008 12.9322 15.7008 19.5307 11.8736L19.9071 11.6553C20.2058 11.4819 20.5824 11.672 20.6043 12.0167C20.6375 12.5376 20.6524 13.125 20.6524 13.7872C20.6524 18.5712 18.7388 19.528 12.4867 19.528C5.81641 19.528 4.38677 18.5712 4.38677 13.7872C4.38677 13.1253 4.40096 12.5382 4.43295 12.0175C4.45418 11.672 4.83143 11.4807 5.13075 11.6545L5.50847 11.8736Z" fill="#25bdb4"></path>
-                            </svg>
-                        </span>
-                        <div class="flex flex-col text-right">
-                            <span class="text-[12px] text-[#b8b8b8]">مدرس دوره</span>
-                            <span class="text-sm text-chambray-700 font-bold">{{$page->user_id}}</span>
-                        </div>
-
-                    </div>
 
                  </div>
                  </div>
-                 <h1 class="flex items-center text-[#25bdb4] text-2xl py-6 font-bold">{{$page->name}}</h1>
-                @trade
+                 <h1 class="flex items-center text-[#000000] text-2xl pt-6 font-bold">{{$page->name}}</h1>
+                 <span class="section-title label-before inline-block relative px-12 text-teal-400 text-sm font-normal mb-4">{{$page->user_id}}</span>
+                 @auth
+                @if ($access)
               <div id="vid-cont" class="video-container">
 
                 <video-js
@@ -100,7 +106,12 @@
                 <i class="watermark-md md:watermark cursor-context-menu	">@if(auth()->check()) {{auth()->user()->id}} @endif</i>
                 <button class="fullscreen-button text-[10px] left-[79%] md:left-[90%] md:text-[12px]" onclick="toggleFullscreen()">تمام صفحه</button>
             </div>
-            @endtrade
+            @else
+            <div class="lg:w-full w-full lg:order-last order-first lg:mb-0 mb-5 overflow-hidden rounded">
+                <img class="w-full h-full object-cover transform transition duration-200 hover:scale-110" src="{{asset($page->cover)}}" alt="{{$page->name}}">
+            </div>
+            @endif
+            @endauth
             @guest
             <div class="lg:w-full w-full lg:order-last order-first lg:mb-0 mb-5 overflow-hidden rounded">
                 <img class="w-full h-full object-cover transform transition duration-200 hover:scale-110" src="{{asset($page->cover)}}" alt="{{$page->name}}">
@@ -112,7 +123,7 @@
                  <div class="text-justify text-slate-500 pt-3 leading-8">
                         @foreach ( $page->tags as $tag )
                             <span class="tagged_as">
-                                <a href="{{asset('tag/'.$tag->slug)}}">{{$tag->name}}</a>
+                                <a href="#">{{$tag->name}}</a>
                                 <span class="meta-sep">,</span>
                             </span>
                         @endforeach

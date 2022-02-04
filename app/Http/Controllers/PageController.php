@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\Page;
@@ -29,7 +30,7 @@ class PageController extends Controller
 
     public function category(Category $category)
     {
-        $pages= $category->pages()->paginate(2);
+        $pages= $category->pages()->paginate(4);
         return view('site.page-cat', ['pages' => $pages] , ['category' => $category] );
 
     }
@@ -92,8 +93,64 @@ class PageController extends Controller
         ->get();
         if($page->status == 1)
         {
+            if(Auth::check() && Auth::user()->plan == '1')
+            {
+                // $previous_week = strtotime("-1 week +1 day");
+                // $start_week = strtotime("last sunday midnight",$previous_week);
+                // $end_week = strtotime("next saturday",$start_week);
+                // $start_week = date("Y-m-d",$start_week);
+                // $end_week = date("Y-m-d",$end_week);
 
-            return view('site.page-trade', ['page' => $page] , ['related' => $related] );
+                // $last_week = Page::whereBetween('created_at', [$start_week, $end_week])->pluck('id')->toarray();
+
+
+                $last_week = Page::select('*')
+                ->whereBetween('created_at',
+                    [Carbon::now()->subMonth(), Carbon::now()]
+                )
+                ->pluck('id')->toarray();
+
+                if( in_array( $page->id , $last_week ) )
+                {
+                   $access = true;
+                   return view('site.page-trade', ['page' => $page] , ['related' => $related])->with('access', $access);
+                }
+                else
+                {
+                    $access = false;
+                    return view('site.page-trade', ['page' => $page] , ['related' => $related])->with('access', $access);
+                }
+            }
+            elseif (Auth::check() && Auth::user()->plan == '2')
+            {
+
+                $last_month = Page::select('*')
+                ->whereBetween('created_at',
+                    [Carbon::now()->subdays(90), Carbon::now()]
+                )->pluck('id')->toarray();
+
+                if( in_array( $page->id , $last_month ) )
+                {
+                    $access = true;
+                    return view('site.page-trade', ['page' => $page] , ['related' => $related] )->with('access', $access);
+                }
+                else
+                {
+                    $access = false;
+                    return view('site.page-trade', ['page' => $page] , ['related' => $related])->with('access', $access);
+                }
+            }
+            elseif  (Auth::check() && Auth::user()->plan == '3')
+            {
+                $access = true;
+                return view('site.page-trade', ['page' => $page] , ['related' => $related] )->with('access', $access);
+            }
+            else
+            {
+                $access = false;
+                return view('site.page-trade', ['page' => $page] , ['related' => $related] )->with('access', $access);
+            }
+
         }
         else
         {

@@ -49,7 +49,7 @@
             <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
             >
-            تعداد دوره ها
+            تعداد مطالب
             </p>
             <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -103,11 +103,11 @@
             <p
             class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
             >
-            تعداد صفحات             </p>
+            تعداد دسته بندی ها             </p>
             <p
             class="text-lg font-semibold text-gray-700 dark:text-gray-200"
             >
-            0
+            {{count($cats)}}
             </p>
         </div>
         </div>

@@ -11,7 +11,7 @@
             <div class="md:col-span-4 relative text-center text-white text-2xl p-5" >
                 ورود / عضویت
             </div>
-            <div class="md:col-span-2 relative" >
+            <div class="md:col-span-2 relative pt-4 sm:p2" >
             <form class="sm:pl-3" method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -64,14 +64,10 @@
           </div>
 
 
-           <div class="md:col-span-2 border-t md:border-0 relative">
+           <div class="md:col-span-2 border-t md:border-0 relative pt-4 sm:p2">
 
             <div class="flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-[#00c7ba]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
-                </svg>
+            <img src="/storage/site-front/logoo.png" alt="">
             </div>
             <p class="text-justify text-white text-lg leading-7">
                 جهت ثبت نام در سایت و دسترسی به محتوای ویژه لطفا عبارت "ثبت نام" را در دایرکت پیج اینستاگرام تریدینگ ورلد ارسال کنید.
@@ -87,8 +83,8 @@
                 </div>
             </button>
         </div>
-        <div class="md:col-span-4 relative text-center text-white text-sm p-5" >
-            <a href="/">بازگشت به صفحه اصلی
+        <div  x-data="{ listmenu2: $persist(false) , listmenu3: $persist(false) , listmenu4: $persist(false) , listmenu: $persist(false)}" class="md:col-span-4 relative text-center text-white text-sm p-5" >
+            <a  @click="listmenu = true ; listmenu2 = false ; listmenu3 = false ; listmenu4 = false" href="/">بازگشت به صفحه اصلی
             </a>
         </div>
         </div>

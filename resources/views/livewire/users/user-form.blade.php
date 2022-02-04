@@ -7,8 +7,26 @@
 
     @endif
 
-       <div class="flex items-center justify-center">
+       <div class="flex items-center justify-center ">
         <div class="container">
+
+            <div class="flex space-x-4 flex-row-reverse items-center	">
+
+                <div>
+                    <select wire:model="filter_plan" name="role" class="h-10 text-[14px] border mt-1 rounded px-4 w-full bg-gray-50">
+                        <option value="" selected hidden>انتخاب کنید</option>
+                        <option value="all">همه کاربران</option>
+                        <option value="3">طلایی</option>
+                        <option value="2">نقره ای</option>
+                        <option value="1">برنزی</option>
+                      </select>
+                </div>
+                <div>
+                    <span class="text-sm">فیلتر :</span>
+                </div>
+           </div>
+
+
             <table class="w-full bg-white flex flex-row text-right flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
                 <thead class="text-white text-center">
                     <tr class="bg-gradient-to-tr from-[#00c7ba] to-[#00abc7] flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">

@@ -23,12 +23,12 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
       <div class="page-header min-vh-85 relative bg-[url('/storage/site-front/slider.jpg')]">
         <div class="container m-auto">
           <div class="grid gap-4 gap-y-2 grid-cols-1 lg:grid-cols-3 p-4">
-            <div class="p-4 lg:col-span-1 lg:col-start-3 rounded-lg text-center mx-auto blur-slider duration-700 delay-600 transitio relative transform opacity-0 transition-all translate-y-12 ease-out" data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>
+            <div class="p-6 lg:col-span-1 lg:col-start-3 rounded-lg text-center mx-auto blur-slider duration-700 delay-600 transitio relative transform opacity-0 transition-all translate-y-12 ease-out" data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>
                 <img class="m-auto w-36" src="{{asset('/storage/site-front/main.png')}}" alt="">
-              <h1 class="text-white text-4xl md:text-5xl pt-3 mt-n5 duration-700 delay-400 transitio relative transform opacity-0 transition-all translate-y-12 ease-out" data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>TRADING WORLD</h1>
+              <h1 class="text-white text-4xl md:text-4xl pt-3 mt-n5 duration-700 delay-400 transitio relative transform opacity-0 transition-all translate-y-12 ease-out" data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>TRADING WORLLD</h1>
               <p class="lead text-white text-justify mt-3" >به تریدینگ ورلد پلاس خوش اومدی رفیق اینجا قرارده مسیر درست پیشرفت معامله گری رو از حرفه ای های بازار یاد بگیریم و دوتا از مهم ترین پارامترهای موفقیت در معامله گری یعنی روانشناسی معامله گری و مدیریت سرمایه رو که نقطه ضعف اکثر تریدرها هستند رو به صورت حرفه ای ببینیم. </p>
               <div class="group flex justify-center ">
-                <a href="/login" class=" items-center flex mt-4 text-white bg-gradient-to-r from-[#00c7ba] to-[#00abc7] hover:bg-gradient-to-br dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center mr-2 mb-2">شروع<i class="w-4 mr-1 group-hover:animate-[left_1s_ease-in-out_infinite]" data-feather="arrow-left"></i>
+                <a href="/login" class=" items-center flex mt-4 text-white bg-gradient-to-r from-[#00c7ba] to-[#00abc7] hover:bg-gradient-to-br dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-2xl px-5 py-1 text-center mr-2 mb-2">شروع<i class="w-4 mr-1 group-hover:animate-[left_1s_ease-in-out_infinite]" data-feather="arrow-left"></i>
                 </a>
              </div>
             </div>
@@ -95,8 +95,8 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
         <div class="max-w-4xl mx-auto">
                 <div class="p-4">
             <div class="mb-5 text-center">
-               <span class="label-before inline-block relative px-12 text-teal-400 text-lg font-normal mb-2">داستان تو از اینجا شروع میشه ...</span>
-                <h2 class="text-gray-700 leading-10 text-xl lg:text-xl font-bold">وقتشه بازار رو واقع گرایانه تر و به دور از رویا ببینیم</h2>
+               <span class="label-before inline-block relative px-12 text-teal-400 text-4xl font-normal mb-2">داستان تو از اینجا شروع میشه ...</span>
+                <h2 class="text-gray-700 leading-10 text-xl lg:text-xl font-bold">وقتشه که با جریان بازار همراه بشیم و حقیقتشو ببینیم</h2>
             </div>
             <video
             id="my-video"
@@ -114,7 +114,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
     <section class="pt-3 pb-4 mt-16 ">
     <div class="container mx-auto">
-      <div class="grid grid-flow-row-dense items-center gap-4 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
+      <div class="grid grid-flow-row-dense items-center gap-12 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
          <div class="lg:col-start-5 lg:col-end-9 relative">
             <video
             id="my-video"
@@ -130,8 +130,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
             <div class="lg:col-start-2 lg:col-end-5 relative">
                 <div class="mb-5">
-                    <span class="section-title label-before inline-block relative px-12 text-teal-400 text-sm font-normal mb-2">ویدیو مصاحبه</span>
-                     <h2 class="text-gray-700 leading-10 text-xl lg:text-xl font-bold">ویدیوهای مصاحبه با تریدرها</h2>
+                    <h2 class="section-title label-before inline-block relative px-12 text-teal-400 text-xl font-bold mb-2">ویدیوهای مصاحبه با تریدرها</h2>
                      <div class="mt-6 flex">
                         <p class="leading-7 text-justify text-gray-500">
                             در این بخش مصاحبه ها و سمینارهای اختصاصی بزرگترین تریدرهای دنیا رو بصورت کامل و با زیرنویس فارسی اختصاصی براتون منتشر میکنیم تا با دیدگاه، نحوه کنترل احساسات، روش های مدیریت سرمایه و روش های معاملاتی حرفه ای های بازار بیشتر آشنا بشیم
@@ -150,7 +149,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
     <section class="pt-3 pb-4 my-16">
         <div class="container mx-auto">
-          <div class="grid grid-flow-row-dense items-center gap-4 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
+          <div class="grid grid-flow-row-dense items-center gap-12 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
              <div class="lg:col-start-2 lg:col-end-6 relative">
                 <video
                 id="my-video"
@@ -166,8 +165,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
                 <div class="lg:col-start-6 lg:col-end-9 relative">
                     <div class="mb-5">
-                        <span class="section-title label-before inline-block relative px-12 text-teal-400 text-sm font-normal mb-2">ویدیو مصاحبه</span>
-                         <h2 class="text-gray-700 leading-10 text-xl lg:text-xl font-bold">ژورنال معاملاتی اختصاصی</h2>
+                         <h2 class="section-title label-before inline-block relative px-12 text-teal-400 text-xl font-bold mb-2">ژورنال معاملاتی اختصاصی</h2>
                          <div class="mt-6 flex">
                             <p class="leading-7 text-justify text-gray-500">
 یکی از بزرگترین مشکلات تریدرها اینه که نمیدونن ایراد کارشون کجاست و چرا بعد از مدتها نتونستن به سوددهی مداوم برسند ؛ بدون داشتن یک کارنامه معاملاتی شخصی ، پی بردن به اشتباهاتمون و اصلاح اونها عملا نشدنی و غیرممکنه ژورنال معاملاتی تریدینگ ورلد بهتون کمک میکنه تا با ثبت جزئیات مهم معاملامتتون ، مشکلات کارتون رو پیدا و حلشون کنید.                             </p>
@@ -185,7 +183,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
     <section class="pt-3 pb-4 my-16 ">
         <div class="container mx-auto">
-          <div class="grid grid-flow-row-dense items-center gap-4 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
+          <div class="grid grid-flow-row-dense items-center gap-12 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
              <div class="lg:col-start-5 lg:col-end-9 relative">
                 <video
                 id="my-video"
@@ -201,8 +199,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
                 <div class="lg:col-start-2 lg:col-end-5 relative">
                     <div class="mb-5">
-                        <span class="section-title label-before inline-block relative px-12 text-teal-400 text-sm font-normal mb-2">ویدیو مصاحبه و کنفرانس</span>
-                         <h2 class="text-gray-700 leading-10 text-xl lg:text-xl font-bold">اینوستینگ پلاس</h2>
+                        <h2 class="section-title label-before inline-block relative px-12 text-teal-400 text-xl font-bold mb-2">اینوستینگ پلاس</h2>
                          <div class="mt-6 flex">
                             <p class="leading-7 text-justify text-gray-500">
 در اینوستینگ پلاس همراهمون باشید تا با روش ها ، دیدگاه ها و پلن سرمایه گذاری بزرگترین سرمایه گذاران دنیا آشنا بشید . در این بخشمصاحبه ها و سمینارهای موفق ترین سرمایه گذاران دنیا رو به صورت کامل و با زیرنویس فارسی اختصاصی در اختیارتون قرار میدیم.
@@ -221,7 +218,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
         <section class="pt-3 pb-4 my-16">
             <div class="container mx-auto">
-              <div class="grid grid-flow-row-dense items-center gap-4 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
+              <div class="grid grid-flow-row-dense items-center gap-12 gap-y-4 grid-cols-1 lg:grid-cols-9  p-4">
                  <div class="lg:col-start-2 lg:col-end-6 relative">
                     <video
                     id="my-video"
@@ -237,8 +234,8 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
                     <div class="lg:col-start-6 lg:col-end-9 relative">
                         <div class="mb-5">
-                            <span class="section-title label-before inline-block relative px-12 text-teal-400 text-sm font-normal mb-2">ویدیو توسعه فردی</span>
-                             <h2 class="text-gray-700 leading-10 text-xl lg:text-xl font-bold">توسعه فردی</h2>
+                            <h2 class="section-title label-before inline-block relative px-12 text-teal-400 text-xl font-bold mb-2">توسعه فردی</h2>
+
                              <div class="mt-6 flex">
                                 <p class="leading-7 text-justify text-gray-500">
 یه تریدر باید شخصیتشو هم به موازات سودهاش رشد بده در این بخش آموزش ها ، سمینارها و ویدیوهای انگیزشی برترین مربیان توسعه فردی رو دریافت خواهید کرد.
@@ -263,13 +260,13 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
                     <div class="swiper-wrapper grid grid-cols-9">
             @foreach ( $pages as $page )
             <div class="swiper-slide p-[48px] sm:p-0 xl:col-span-3 md:col-span-4 sm:col-span-4 col-span-9 mb-15">
-                <div class="shadow-smswiper-slide-active rounded-lg bg-white relative pt-52 flex justify-center h-full">
+                <div class="shadow-smswiper-slide-active rounded-lg bg-gradient-to-tr from-[#00c7ba] to-[#152c3e] relative pt-52 flex justify-center h-full">
                     <div class="absolute -top-12 w-full  px-4 ">
-                        <a href="{{asset('page/'.$page->slug)}}" class=" inline-block h-60 overflow-hidden w-full rounded-lg">
+                        <a href="{{asset('pages/'.$page->slug)}}" class=" inline-block h-60 overflow-hidden w-full rounded-lg">
                             <img class="w-full h-full object-cover transform transition duration-200 hover:scale-110" src="{{asset($page->image)}}" alt="{{$page->name}}">
                         </a>
                     </div>
-                    <div class="flex flex-col flex-1 w-full space-y-2">
+                    <div class="flex flex-col flex-1 w-full space-y-2 bg-white p-4">
                         <div class=" px-4 flex flex-col flex-grow">
                             <a href="{{asset('pages/'.$page->slug)}}" class="mb-2 inline-block">
                                 <span class="text-xl font-bold text-gray-800 hover:text-blue-700 duration-200 transition">{{$page->name}}</span>
@@ -281,7 +278,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
                         </div>
                         <div>
                             <div class="pb-1 px-4">
-                                <div class="flex justify-between items-center">
+                                <div class="flex justify-center items-center pb-2">
                                     <div class="flex items-center">
                                                     <div class="flex items-center bg-gray-100 px-2 h-6 rounded ml-2">
                                                         <svg class="ml-1" width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -293,15 +290,7 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
                                     </div>
                                 </div>
                             </div>
-                                 <div class="flex justify-center border-t border-gray-300 border-opacity-10">
-                                    <a href="{{asset('pages/'.$page->slug)}}" class="flex items-center my-4 transform group 0 font-bold text-base transition duration-200  hover:text-dark-700 text-red-450">
-                                        <span>مشاهده اطلاعات</span>
-                                        <svg class="mr-1 -mt-0.5" width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill="currentColor" opacity="0.4" d="M16.7544 11.5347L20.5098 11.2026C21.3525 11.2026 22.0358 11.8925 22.0358 12.7435C22.0358 13.5945 21.3525 14.2844 20.5098 14.2844L16.7544 13.9523C16.0933 13.9523 15.5573 13.4111 15.5573 12.7435C15.5573 12.0748 16.0933 11.5347 16.7544 11.5347Z"></path>
-                                            <path fill="currentColor" d="M4.14372 11.5957C4.20242 11.5365 4.42169 11.286 4.62767 11.078C5.82925 9.77526 8.96663 7.64503 10.6079 6.9931C10.857 6.8891 11.4872 6.66769 11.8249 6.65204C12.1472 6.65204 12.4551 6.72696 12.7485 6.87457C13.1151 7.08144 13.4075 7.40796 13.5692 7.79263C13.6722 8.05877 13.8338 8.85831 13.8338 8.87285C13.9944 9.74619 14.0819 11.1663 14.0819 12.7363C14.0819 14.2303 13.9944 15.5923 13.8626 16.4802C13.8482 16.4958 13.6866 17.4877 13.5105 17.8276C13.1882 18.4494 12.5581 18.8341 11.8836 18.8341H11.8249C11.3853 18.8195 10.4617 18.4337 10.4617 18.4203C8.90794 17.7684 5.84475 15.741 4.61328 14.3936C4.61328 14.3936 4.26554 14.0469 4.11493 13.8311C3.88015 13.5202 3.76276 13.1355 3.76276 12.7509C3.76276 12.3215 3.89455 11.9223 4.14372 11.5957Z"></path>
-                                        </svg>
-                                    </a>
-                                </div>
+
                         </div>
                     </div>
                 </div>
@@ -323,27 +312,6 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
 
 @section('footer-scripts')
-<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-<script>
-videojs('my-video', {
-  userActions: {
-    doubleClick: false
-  },
-  controlBar: {
-      fullscreenToggle: false ,
-      pictureInPictureToggle: false
-    }
-});
-</script>
-<script>
-    function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.getElementById('vid-cont').requestFullscreen();
-    } else if (document.exitFullscreen) {
-        document.exitFullscreen();
-    }
-}
-</script>
 <script>
     document.addEventListener("DOMContentLoaded", function(){
     setTimeout(function(){
@@ -359,6 +327,21 @@ videojs('my-video', {
     }, 1);
 });
 </script>
+<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+<script>
+        videojs('my-video', {
+  userActions: {
+    doubleClick: false
+  },
+  controlBar: {
+      fullscreenToggle: true ,
+      pictureInPictureToggle: false
+    }
+});
+
+
+</script>
+
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->

@@ -6,39 +6,51 @@
 
 
 @section('content')
-<section class="relative block h-[13rem] sm:h-[30rem] mt-16">
-    <div class="absolute top-0 w-full h-full bg-left sm:bg-center bg-cover bg-[url('/storage/site-front/category.jpg')]" >
+  <section class="relative block h-[13rem] sm:h-[30rem] mt-16">
+
+    <div class="absolute top-0 w-full h-full bg-left sm:bg-center bg-cover]" style="background-image: url({{$category->cover}}" >
+
       <span id="blackOverlay" class="w-full h-full absolute sm:bg-gradient-to-l from-slate-900">
-        <div class="md:top-1/4 top-[80%] sm:top-[35%] bg-white sm:bg-inherit absolute text-white p-4 sm:p-0 rounded-lg sm:right-[20%] right-[11%] ">
+        <div class="container mx-auto relative top-[80%] sm:top-[30%] p-4">
+
+        <div class="md:top-1/4  bg-white sm:bg-inherit text-white p-4 sm:p-0 rounded-lg ">
             <p class="text-[#25bdb4] sm:text-white">مصاحبه و سمینارهای</p>
             <p class="md:text-5xl text-[23px] text-[#25bdb4] py-3">بزرگترین سرمایه گذاران دنیا</p>
             <p class="md:text-2xl text-[11px] text-[#25bdb4] sm:text-white">با پلان ها و دیدگاه های سرمایه گذاری در دنیا آشنا شوید</p>
+        </div>
         </div>
       </span>
     </div>
   </section>
 
+
+
+
   <section class="pt-3 pb-4 mt-24 sm:mt-4">
     <div class="container mx-auto">
+        @if(count($pages) > 0)
       <div class=" grid grid-flow-row-dense items-center gap-4 gap-y-4 grid-cols-1 lg:grid-cols-12 p-4">
+
           @foreach ( $pages as $page)
-          <div class="group lg:col-span-6 relative shadow-lg hover:shadow-xl transition-all p-4 rounded-lg bg-white">
-            <div class="grid grid-flow-row-dense items-center gap-4 gap-y-4 lg:grid-cols-6">
-                <div class="lg:col-span-2 relative">
-                    <a href="{{asset('pages/'.$page->slug)}}"><img class="w-full m-auto h-full object-cover rounded" src="{{asset($page->image)}}"></a>
+                <div class="group col-start-2 col-end-12 relative shadow-lg hover:shadow-xl transition-all p-4 rounded-lg bg-white">
+            <div class="grid grid-flow-row-dense items-center gap-4 gap-y-4 lg:grid-cols-10">
+                <div class="lg:col-span-3 relative">
+                    <a href="{{asset('pages/'.$page->slug)}}"><img class="w-[18rem] m-auto object-cover rounded" src="{{asset($page->image)}}"></a>
                 </div>
-                <div class="lg:col-span-4 relative">
+                <div class="lg:col-span-7 relative">
                     <h2>
                         <a href="{{asset('pages/'.$page->slug)}}" class="mb-2 inline-block">
-                            <span class="text-xl font-bold text-[#25bdb4]">{{$page->name}}</span>
+                            <span class="text-2xl sm:text-3xl font-bold text-[#25bdb4]">{{$page->name}}</span>
                         </a>
                     </h2>
                     <?php
-                    $paragraph=substr($page->description,0,350) . '...';
+                    $paragraph=substr($page->description,0,620) . '...';
                 ?>
-            <div class="mb-2 text-gray-500 text-[13px] text-justify font-normal overflow-hidden leading-6">{!!$paragraph!!}</div>
-            <div class="flex items-end justify-around">
-                <div class="flex flex-row items-center justify-center pt-3 pb-2 border-left">
+            <div class="mb-2 text-gray-500 text-[16px] text-justify font-normal overflow-hidden leading-8">{!!$paragraph!!}</div>
+            <div class="flex items-end justify-between items-center">
+
+                <div class="flex space-x-4 flex-row-reverse">
+                <div class="flex flex-row items-center justify-center pt-3 pb-2">
                     <span class="inline-flex ">
                         <svg class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1792 23.9333C2.54046 23.9333 0.474609 21.8674 0.474609 12.2287C0.474609 2.59002 2.54046 0.52417 12.1792 0.52417C21.8178 0.52417 23.8837 2.59002 23.8837 12.2287C23.8837 21.8674 21.8178 23.9333 12.1792 23.9333ZM11.2038 6.37644C11.2038 5.83773 11.6405 5.40106 12.1792 5.40106C12.7178 5.40106 13.1545 5.83773 13.1545 6.37644V11.2533H18.0314C18.5701 11.2533 19.0068 11.69 19.0068 12.2287C19.0068 12.7674 18.5701 13.2041 18.0314 13.2041H12.1792C11.6405 13.2041 11.2038 12.7674 11.2038 12.2287V6.37644Z" fill="#25bdb4"></path>
@@ -50,19 +62,19 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row items-center justify-center pt-3 pb-2">
-                    <span class="inline-flex ">
+                <div class="flex flex-row items-center justify-center pt-3 pb-2  border-left">
+                    {{-- <span class="inline-flex ">
                         <svg class="ml-3" width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.50847 10.9168C12.107 14.744 12.9322 14.744 19.5307 10.9168C26.1292 7.08956 26.1292 7.08956 19.5307 3.26237C12.9322 -0.564826 12.107 -0.564837 5.50847 3.26237C2.20921 5.17597 0.55957 6.13277 0.55957 7.08957V15.7008C0.55957 16.2292 0.987944 16.6576 1.51637 16.6576C2.0448 16.6576 2.47317 16.2292 2.47317 15.7008L2.47317 9.45617C2.47317 9.30453 2.64132 9.21274 2.76975 9.29336C3.50113 9.75249 4.41404 10.282 5.50847 10.9168Z" fill="#25bdb4"></path>
                             <path d="M5.50847 11.8736C12.107 15.7008 12.9322 15.7008 19.5307 11.8736L19.9071 11.6553C20.2058 11.4819 20.5824 11.672 20.6043 12.0167C20.6375 12.5376 20.6524 13.125 20.6524 13.7872C20.6524 18.5712 18.7388 19.528 12.4867 19.528C5.81641 19.528 4.38677 18.5712 4.38677 13.7872C4.38677 13.1253 4.40096 12.5382 4.43295 12.0175C4.45418 11.672 4.83143 11.4807 5.13075 11.6545L5.50847 11.8736Z" fill="#25bdb4"></path>
                         </svg>
-                    </span>
+                    </span> --}}
                     <div class="flex flex-col text-right">
-                        <span class="text-[12px] text-[#b8b8b8]">سرمایه گذار</span>
+                        {{-- <span class="text-[12px] text-[#b8b8b8]">سرمایه گذار</span> --}}
                         <span class="text-sm text-chambray-700 font-bold">{{$page->user_id}}</span>
                     </div>
                 </div>
-
+            </div>
                 <div class="flex flex-row items-center justify-center pt-3 pb-2 hidden sm:flex">
                     <a href="{{asset('pages/'.$page->slug)}}" class="flex items-center text-[#25bdb4]">
                         <span>مشاهده</span>
@@ -86,10 +98,10 @@
             </div>
         </div>
           @endforeach
-
-
-
         </div>
+        @else
+        <span>در حال حاضر هیچ محتوایی در این بخش وجود ندارد !</span>
+        @endif
         <div>
             {{ $pages->links('pagination::tailwind') }}
 

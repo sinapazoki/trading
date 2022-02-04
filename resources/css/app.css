@@ -123,7 +123,6 @@ html,body {scroll-behavior: smooth}
     box-shadow: 1px 1px 13px #ebebeb;
 }
 .border-nav {
-    color: #666;
     position: relative;
     display: inline-block;
 }
@@ -323,7 +322,22 @@ video::-webkit-media-controls-fullscreen-button {
     justify-content: center;
     background-color: #25bdb4!important;
 }
-
+.mylogo::before {
+    position: absolute;
+    content: '';
+    right: -379px;
+    top: -20px;
+    z-index: -1;
+    bottom: 0;
+    height: 84px;
+    width: 645px;
+    background: linear-gradient(
+349deg
+, #152b3e, #162d3f,#0b9189);
+    transform: skewX(
+329deg
+ );
+}
 .watermark-md {
     position: absolute;
     left: 3%;
@@ -457,7 +471,7 @@ span.tagged_as a {
 }
 
 .min-vh-85 {
-    min-height: 85vh!important;
+    min-height: 100vh!important;
 }
 
 .shadow-blur {

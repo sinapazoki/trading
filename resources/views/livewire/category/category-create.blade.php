@@ -18,7 +18,7 @@
                       @enderror
                     </div>
 
-                    <div class="md:col-span-2 text-left mt-auto">
+                       <div class="md:col-span-2 text-left mt-auto">
                       <div class="inline-flex items-end">
                         <button wire:click.prevent="store()" class="w-40 bg-gradient-to-tr from-[#00c7ba] to-[#00abc7] hover:from-[#00abc7] hover:to-[#00c7ba] text-white font-bold py-2 px-6 rounded">ایجاد دسته</button>
                       </div>
